@@ -1,4 +1,3 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -19,7 +18,53 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@marxa/devkit": [
+        "dist/marxa/devkit/marxa-devkit",
+        "dist/marxa/devkit"
+      ],
+      "@marxa/auth": [
+        "dist/marxa/auth/marxa-auth",
+        "dist/marxa/auth"
+      ],
+      "@marxa/index": [
+        "dist/marxa/index/marxa-index",
+        "dist/marxa/index"
+      ],
+      "@marxa/slider": [
+        "dist/marxa/slider/marxa-slider",
+        "dist/marxa/slider"
+      ],
+      "@marxa/navbar": [
+        "dist/marxa/navbar/marxa-navbar",
+        "dist/marxa/navbar"
+      ],
+      "@marxa/search": [
+        "dist/marxa/search/marxa-search",
+        "dist/marxa/search"
+      ],
+      "@marxa/sidenav": [
+        "dist/marxa/sidenav/marxa-sidenav",
+        "dist/marxa/sidenav"
+      ],
+      "@marxa/social-share": [
+        "dist/marxa/social-share/marxa-social-share",
+        "dist/marxa/social-share"
+      ],
+      "@marxa/advance-fields": [
+        "dist/marxa/advance-fields/marxa-advance-fields",
+        "dist/marxa/advance-fields"
+      ],
+      "@marxa/fire-notifications": [
+        "dist/marxa/fire-notifications/marxa-fire-notifications",
+        "dist/marxa/fire-notifications"
+      ],
+      "@marxa/storage": [
+        "dist/marxa/storage/marxa-storage",
+        "dist/marxa/storage"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,

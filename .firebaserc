@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "marxa-d": {
+      "hosting": {
+        "marxa-devs": [
+          "marxa-d"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<mat-form-field [appearance]="'outline'">
+    <mat-label *ngIf="label">
+        {{label}}
+    </mat-label>
+    <textarea matInput 
+    class="dialgbox" 
+    name="dialgbox"  
+    id="dialgbox" 
+    #dialgbox
+    matAutosize="true"
+    [(ngModel)]="text"
+    ></textarea>
+</mat-form-field>

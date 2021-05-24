@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Input, OnInit, AfterViewInit } from '@angular/core';
 
 @Directive( {
-    selector: '[responsive]',
+    selector: '[mxResponsive]',
 })
 export class MxResponsiveDirective implements OnInit{
 

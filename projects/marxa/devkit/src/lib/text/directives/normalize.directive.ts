@@ -4,7 +4,7 @@ import { pluck } from 'rxjs/operators';
 
 @Directive( {
 
-    selector: '[normalize]',
+    selector: '[mxNormalize]',
 
 } )
 export class MxNormalizeDirective {

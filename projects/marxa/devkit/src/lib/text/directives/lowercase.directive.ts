@@ -2,7 +2,7 @@ import { Directive, ElementRef } from '@angular/core';
 
 @Directive( {
 
-    selector: '[lowecase]',
+    selector: '[mxLowecase]',
     host: {
         '(input)': 'ref.nativeElement.value=$event.target.value.toLowerCase()',
     }

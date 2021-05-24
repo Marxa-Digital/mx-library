@@ -1,5 +1,21 @@
-@import './normalize.scss';
-@import './text.scss';
+@mixin x-small {
+  @media (max-width: 414px) { @content; }
+}
+@mixin small {
+  @media (max-width: 768px) { @content; }
+}
+@mixin mid-portrait {
+  @media (min-width: 768px) { @content; }
+}
+@mixin mid-landscape {
+  @media (min-width: 900px) { @content; }
+}
+@mixin large {
+  @media (min-width: 1280px) { @content; }
+}
+@mixin x-large{
+  @media (min-width: 1800px) { @content; }
+}
 
 .align-cols {
     display: flex;
@@ -10,6 +26,27 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.align-center {
+  display: flex;
+  justify-content: center;
+}
+
+.align-right {
+  display: flex;
+  justify-content: flex-end
+}
+
+.align-distributed {
+  display: flex;
+  justify-content: space-around;
+}
+
+@media screen and (max-width:350px){
+  .row .col.s6 {
+    width:49% !important
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -157,7 +194,7 @@
 .container {
     margin: 1em auto;
     max-width: 1280px;
-    width: 95%
+    width: 95%;
 }
 
 

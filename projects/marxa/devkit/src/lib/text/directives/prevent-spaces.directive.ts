@@ -4,7 +4,7 @@ import { pluck } from 'rxjs/operators';
 
 
 @Directive({
-  selector: '[preventSpaces]',
+  selector: '[mxPreventSpaces]',
 })
 export class MxPreventSpacesDirective {
 

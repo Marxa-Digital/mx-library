@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ChartGroup, iChartsGroup } from './mx-text.model';
 
 @Injectable({providedIn:'root'})
 export class MxText {
@@ -59,4 +60,25 @@ export class MxText {
         return date.toLocaleTimeString( 'es-MX', this.timeStringOptions )
     }
 
+/** Prevent print chart on keypress.
+   * @note No works in keydown o keyup event
+   */
+  onlyAllow( list: ChartGroup[], event: any) {
+    var k;
+    k = event.charCode;  // k = event.keyCode;  (Both can be used)
+    if ( ( list.includes("letters") && (k > 96 && k < 123))
+      || ( list.includes("numbers") && (k >= 48 && k <= 57))
+      || ( list.includes("backspace") && k == 8)
+      || ( list.includes("space") && k == 32)
+      || ( list.includes("comma") && k == 188)
+      || ( list.includes("dash") && k == 189)
+      || ( list.includes("perdiod") && k == 190)
+      || ( list.includes("underscore") && k == 95)
+    ) { return true }
+    else {return false}
+  }
+
 }
+
+
+

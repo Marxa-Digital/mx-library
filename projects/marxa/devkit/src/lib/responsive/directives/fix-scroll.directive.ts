@@ -1,7 +1,7 @@
 import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: '[fixScroll]',
+  selector: '[mxFix]',
 })
 export class MxFixScroll implements AfterViewInit {
 

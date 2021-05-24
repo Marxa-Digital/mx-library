@@ -3,7 +3,7 @@ import { fromEvent } from 'rxjs';
 import { debounceTime, pluck } from 'rxjs/operators';
 
 @Directive( {
-    selector: '[strechHeight]',
+    selector: '[mxStrechHeight]',
 })
 export class MxStretchHeightDirective implements OnInit{
 

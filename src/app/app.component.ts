@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'marxa-devs';
   constructor() { }
-
+  needColumns: string[] = [
+    'referencia',
+    'precio',
+    'descripcion'
+  ]
 }

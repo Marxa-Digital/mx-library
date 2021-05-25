@@ -1,7 +1,7 @@
 <span class="right" [style.width]="'100%'">
   <button mat-icon-button
   (click)="dialog.close()">
-    <i class="fas fa-times fa-lg"></i>
+    <mat-icon>cancel</mat-icon>
   </button>
 </span>
 <p mat-dialog-title class="center">Cargando registros</p>
@@ -15,7 +15,6 @@
 style="display: flex; justify-content: center;">
     <button mat-raised-button
     (click)="dialog.close()"
-    [disabled]="progress !== 100"
-    cdkFocusInitial
+    [disabled]="progress < 100"
     >Cerrar</button>
 </mat-dialog-actions>

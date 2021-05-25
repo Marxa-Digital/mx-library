@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MxUploadFilesComponent } from './upload-files.component';
+import { MxFilesPickerComponent } from './files-picker.component';
 
 describe('UploadFilesComponent', () => {
-  let component: MxUploadFilesComponent;
-  let fixture: ComponentFixture<MxUploadFilesComponent>;
+  let component: MxFilesPickerComponent;
+  let fixture: ComponentFixture<MxFilesPickerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MxUploadFilesComponent ]
+      declarations: [ MxFilesPickerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MxUploadFilesComponent);
+    fixture = TestBed.createComponent(MxFilesPickerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

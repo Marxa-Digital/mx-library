@@ -1,17 +1,17 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { from, Subscription, timer } from 'rxjs';
-import { concatAll, debounce, take } from 'rxjs/operators';
+import { from, Subscription } from 'rxjs';
+import { concatAll,  take } from 'rxjs/operators';
 import { MxStorage } from '../../mx-storage.service';
 import { iUploadedFile } from '../../mx-storage.model';
 import { MxUploadModalComponent } from '../upload-modal/upload-modal.component';
 
 @Component({
   selector: 'mx-files-picker',
-  templateUrl: './upload-files.component.html',
-  styleUrls: ['./upload-files.component.scss']
+  templateUrl: './files-picker.component.html',
+  styleUrls: ['./files-picker.component.scss']
 })
-export class MxUploadFilesComponent implements OnInit, OnDestroy {
+export class MxFilesPickerComponent implements OnInit, OnDestroy {
 
   public uploadingFiles: boolean = false
   public dropedFiles: any[] = []
@@ -44,6 +44,7 @@ export class MxUploadFilesComponent implements OnInit, OnDestroy {
 
   private triggerSubscription?: Subscription
   private clearSubscription?: Subscription
+  private onCompleteSub?: Subscription
 
   constructor(
     public storage_: MxStorage,
@@ -52,8 +53,16 @@ export class MxUploadFilesComponent implements OnInit, OnDestroy {
     this.path = this.storage_.path
     this.prefixName = this.storage_.prefixName
     this.metadata = this.storage_.metadata
-    this.clearSubscription = this.storage_.clearDropzone
-      .subscribe(() => { this.dropedFiles = [] })
+    this.clearSubscription = this.storage_.clearDropzone$
+      .subscribe(() => {
+        this.dropedFiles = []
+        this.storage_.files = []
+        this.storage_.showDropzone = false
+      })
+    this.onCompleteSub = this.storage_.uploadComplete$
+      .subscribe(() => {
+        this.storage_.clearDropzone$.next()
+      })
   }
 
   ngOnInit(): void {
@@ -161,6 +170,7 @@ export class MxUploadFilesComponent implements OnInit, OnDestroy {
     if (this.storage_.fileSubscription) this.storage_.fileSubscription.unsubscribe()
     if (this.triggerSubscription) this.triggerSubscription.unsubscribe()
     if (this.clearSubscription) this.clearSubscription.unsubscribe()
+    if (this.onCompleteSub) this.onCompleteSub.unsubscribe()
   }
 
 }

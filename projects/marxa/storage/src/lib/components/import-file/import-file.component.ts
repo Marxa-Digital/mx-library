@@ -1,7 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ViewChild, ElementRef, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { take, takeWhile } from 'rxjs/operators';
-import { importOptions } from '../../mx-storage.model';
 import { MxStorage } from '../../mx-storage.service';
 import { DialogImportComponent } from '../dialog-import/dialog-import.component';
 import { DialogRenameColumnsComponent } from '../dialog-rename-columns/dialog-rename-columns.component';
@@ -31,6 +30,8 @@ export class MxImportFileComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     if (this.importCol) this.storage.importCol = this.importCol
     if (this.idField) this.storage.idField = this.idField
+    if (this.requiredColumns.length > 0)
+    this.storage.requiredColumns = this.requiredColumns
   }
 
   ngAfterViewInit() {
@@ -50,7 +51,9 @@ export class MxImportFileComponent implements OnInit, AfterViewInit {
               let column = this.storage.normalize( reqColumn.toLowerCase().trim())
               if (!list.includes(column)) {
                 validate = false
-                this._dialog.open(ErrorColumnsRequiredComponent, { data: reqColumn })
+                this._dialog.open(ErrorColumnsRequiredComponent, {
+                  data: `Hace falta la columna ${reqColumn} en el archivo`
+                })
               }
               else validate = true
             })

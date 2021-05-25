@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { BehaviorSubject, Observable, Subject, Subscriber, Subscription } from 'rxjs';
-import firebase from 'firebase/app'
-import { distinctUntilChanged, filter, finalize, tap } from 'rxjs/operators';
-import { importOptions, iUploadedFile, iUploadInfo, RawValue } from './mx-storage.model';
-import { MatDialog } from '@angular/material/dialog';
-import { MxUploadingSpinnerComponent } from './components/uploading-spinner/uploading-spinner.component';
-
-import { ExportToCsv } from 'export-to-csv';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { MatDialog } from '@angular/material/dialog';
+import firebase from 'firebase/app'
+import { ExportToCsv } from 'export-to-csv';
+import { finalize, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject, Subscriber, Subscription } from 'rxjs';
+
+import { iUploadedFile, iUploadInfo, RawValue } from './mx-storage.model';
+import { MxUploadingSpinnerComponent } from './components/uploading-spinner/uploading-spinner.component';
+import { ErrorColumnsRequiredComponent } from './components/import-file/error-columns-required/error-columns-required.component';
+
 
 
 
@@ -34,23 +36,24 @@ export class MxStorage {
    */
   public metadata?: Object
   public files: any[] = []
-  public fileUploadedStatus$:
-    Subject<iUploadedFile> = new Subject()
+  public fileUploadedStatus$: Subject<iUploadedFile> = new Subject()
   public upload$: Subject<void> = new Subject()
   public uploadComplete$: Subject<iUploadedFile[]> = new Subject
   public showDropzone: boolean = false
   public clearDropzone: Subject<void> = new Subject()
+  public closeImportDialog$: Subject<void> = new Subject()
   public closeSpinner: Subject<void> = new Subject()
   public fileSubscription?: Subscription
-  loadingActive: boolean = false
-  valueHeaderMap: Map<string, number> = new Map();
-  recordsReaded: BehaviorSubject<number> = new BehaviorSubject(0);
-  recordsLength: number = 0
-  state$: BehaviorSubject<string> = new BehaviorSubject('')
-  csvRecordsArray: any[] = []
-  csvHeadersArray: any[] = []
-  importCol: string = 'imports'
-  idField: string = ''
+  private loadingActive: boolean = false
+  private valueHeaderMap: Map<string, number> =  new Map();
+  public recordsReaded: BehaviorSubject<number> = new BehaviorSubject(0);
+  public recordsLength: number = 0
+  public state$: BehaviorSubject<string> = new BehaviorSubject('')
+  private csvRecordsArray: any[] = []
+  private csvHeadersArray: any[] = []
+  public importCol: string = 'imports'
+  public idField: string = ''
+  public requiredColumns: string[] = []
   public requiredHeaders: string[] = []
   public headerMap: Map<string, string> = new Map()
 
@@ -58,7 +61,10 @@ export class MxStorage {
     private _aStorage: AngularFireStorage,
     private _dialog: MatDialog,
     private _afs: AngularFirestore
-  ) { }
+  ) {
+  }
+
+  waitFor = (ms: number) => new Promise( r => setTimeout(r,ms))
 
   upload() {
     this.upload$.next()
@@ -236,8 +242,8 @@ export class MxStorage {
 
 
   async importFile(collection?: string, idField?: string) {
-    this.importCol = collection ? collection : ''
-    this.idField = idField ? idField : ''
+    this.importCol = collection ? collection : this.importCol
+    this.idField = idField ? idField : this.idField
 
     let reader = new FileReader();
     reader.readAsText(this.files[0])
@@ -258,54 +264,97 @@ export class MxStorage {
 
   private async uploadRecords(records: any[]) {
     this.importCol = this.importCol ? this.importCol : 'imports'
-    this.idField = this.idField ?
-      this.normalize(this.idField.toLowerCase().trim()) : ''
+    this.idField = this.idField ? this.normalize(this.idField.trim()) : ''
+
     const colRef = this._afs.collection(this.importCol).ref
-    const batch = this._afs.firestore.batch()
+
     const batchArray: (firebase.firestore.WriteBatch)[] = [];
-    batchArray.push(batch);
+    batchArray.push(this._afs.firestore.batch());
     let batchIndex = 0;
+    let batchAmount = 0;
 
     records.splice(0, 1)
     this.recordsLength = records.length
-    await this.asyncForEach(records, async (record: string, index: number) => {
-      try {
-        let currentRecord = record.split(',')
-        if (currentRecord.length === this.valueHeaderMap.size) {
-          let record = this.setNewRecord(currentRecord, index)
 
-          batchArray[batchIndex].set(colRef.doc(record[this.idField]), record)
-          let count = this.recordsReaded.getValue()
-          count++
-          if (count === 499) {
-            batchArray.push(batch);
-            batchIndex++;
-            this.recordsReaded.next(0)
-          } else {
+    try {
+      await this.asyncForEach(records, async (record: string, index: number) => {
+        try {
+          let currentRecord = record.split(',')
+          if (currentRecord.length === this.valueHeaderMap.size) {
+            let record = this.setNewRecord(currentRecord, index)
+            let recordId = this.normalize(record[this.idField].toLowerCase().trim())
+            recordId = recordId
+              .replace(/\//g, '_')
+              .replace(/\./g, '_')
+              .replace(/,/g, '_')
+              .replace(/@/g, '_')
+              .replace(/\s/g, '_')
+              .replace(/\"/g, '')
+
+            batchArray[batchIndex].set(colRef.doc(recordId), record)
+            let count = this.recordsReaded.getValue();
+            count++;
+            batchAmount++
+            await this.waitFor(50)
+            // console.log(batchIndex, batchAmount)
+            if (batchAmount === 499) {
+              batchArray.push(this._afs.firestore.batch());
+              batchIndex++;
+              batchAmount = 0
+              await this.waitFor(1000)
+            }
             this.recordsReaded.next(count)
+            this.state$.next(`Cargando fila ${count}`)
+            return
           }
-          return
+        } catch (error) {
+          this.recordsReaded.next(this.recordsLength)
+          this.closeImportDialog$.next()
+          this.recordsReaded.next(0)
+          this._dialog.open(ErrorColumnsRequiredComponent, {
+            data: error.message
+          })
+          console.error(error)
         }
-      } catch (error) { console.error(error) }
-    })
-
-    await this.asyncForEach(batchArray,
-      async (batch: firebase.firestore.WriteBatch) => {
-        await batch.commit()
-        return
       })
 
-    this.state$.next(`${this.recordsLength} registros cargados`)
-    this.showDropzone = false
-    this.files = []
+      await this.asyncForEach(batchArray,
+        async (currentBatch: firebase.firestore.WriteBatch, index: number) => {
+          this.state$.next(`Cargando a base de datos: Lote ${index}`)
+          await currentBatch.commit()
+          await this.waitFor(2000)
+          return
+        })
+
+      this.state$.next(`${this.recordsLength} registros cargados`)
+      this.uploadComplete$.next()
+      this.showDropzone = false
+      this.files = []
+      this.recordsReaded.next(0)
+    } catch (error) {
+      console.error(error)
+      this.recordsReaded.next(this.recordsLength)
+      this.closeImportDialog$.next()
+      this.recordsReaded.next(0)
+      this._dialog.open(ErrorColumnsRequiredComponent, {
+        data: error.message
+      })
+    }
   }
 
 
-  private setNewRecord(recordArray: string[], index: number) {
+  private setNewRecord(recordArray: string[], row: number) {
     let nuevo: any = {}
     this.valueHeaderMap.forEach((index, field) => {
-      if (recordArray[index]) nuevo[field] = recordArray[index]
-      else throw new Error(`No se pudo encontrar ${field} en la fila ${index}`)
+      let valid = true
+      this.requiredColumns.forEach((col: any) => {
+        let req = this.valueHeaderMap.get(col)
+        if (req && !recordArray[req]) {
+          valid = false
+          throw { message: `No se pudo encontrar ${col} en la fila ${row}` }
+        }
+      })
+      if (valid) nuevo[field] = recordArray[index]
     })
     return nuevo
   }
@@ -339,8 +388,8 @@ export class MxStorage {
     let fileHeaders: string[] = (csvRecordsArr[0]).split(',');
     this.state$.next('Renombrando columnas')
     fileHeaders.forEach((header, index) => {
-      header = header.toLowerCase().trim()
-      let syn = this.headerMap.get(header)?.toLowerCase().trim()
+      header = header.trim()
+      let syn = this.headerMap.get(header)?.trim()
       if (syn) this.valueHeaderMap.set(this.normalize(syn), index)
       else this.valueHeaderMap.set(this.normalize(header), index)
     })
@@ -365,7 +414,15 @@ export class MxStorage {
                 ret.push( c );
         }
         return ret.join( '' );
-}
+  }
+
+  replaceChartFor(text: string,  chartList: string[], chart: string) {
+    chartList.forEach(ch => {
+      let regx = new RegExp(ch, "g")
+      text = text.replace(regx, chart)
+    })
+    return text
+  }
 
 }
 

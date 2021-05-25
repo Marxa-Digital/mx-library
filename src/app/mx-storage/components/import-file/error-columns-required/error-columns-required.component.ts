@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ErrorColumnsRequiredComponent implements OnInit {
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public column: string,
+    @Inject(MAT_DIALOG_DATA) public message: string,
     public dialog: MatDialogRef<ErrorColumnsRequiredComponent>
   ) { }
 

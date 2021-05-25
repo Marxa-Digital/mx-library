@@ -6,9 +6,9 @@ import { AngularFireModule } from "@angular/fire";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MxStorageModule } from "./mx-storage/mx-storage.module";
 import { FirebaseModule } from './shared/firebase.module';
 import {environment} from '../environments/environment'
+import { MxStorageModule } from './mx-storage/src/public-api';
 
 @NgModule({
   declarations: [

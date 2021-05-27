@@ -29,11 +29,13 @@ export class MxResponsive {
   }
 
   get med() {
-    return window.screen.width < this.medWidth ? true : false
+    return window.screen.width > this.smallWidth &&
+    window.screen.width < this.medWidth ? true : false
   }
 
   get large() {
-    return window.screen.width < this.largeWidth ? true : false
+    return window.screen.width > this.medWidth
+      && window.screen.width < this.largeWidth ? true : false
   }
 
   strechHeigth( el: ElementRef ) {

@@ -4,3 +4,9 @@
 [submodule "src/app/mx-storage"]
 	path = src/app/mx-storage
 	url = https://github.com/jgu7man/mx-storage
+[submodule "projects/marxa/devkit"]
+	path = projects/marxa/devkit
+	url = https://github.com/jgu7man/mx-devkit
+[submodule "src/app/devkit"]
+	path = src/app/devkit
+	url = https://github.com/jgu7man/mx-devkit

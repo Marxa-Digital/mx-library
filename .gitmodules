@@ -7,6 +7,6 @@
 [submodule "projects/marxa/devkit"]
 	path = projects/marxa/devkit
 	url = https://github.com/jgu7man/mx-devkit
-[submodule "src/app/devkit"]
-	path = src/app/devkit
+[submodule "src/app/mx-devkit"]
+	path = src/app/mx-devkit
 	url = https://github.com/jgu7man/mx-devkit

@@ -1,0 +1,16 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/marxa/storage",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "firebase/app": "firebase",
+      "export-to-csv": "export-to-csv",
+      "ngx-dropzone": "ngx-dropzone"
+    }
+  },
+  "allowedNonPeerDependencies": [
+    "export-to-csv",
+    "ngx-dropzone"
+  ]
+}

@@ -1,0 +1,11 @@
+<p class="center" mat-dialog-title>Error</p>
+<mat-dialog-content>
+  <p class="center">{{message}}</p>
+</mat-dialog-content>
+<mat-dialog-actions
+style="display: flex; justify-content: center;">
+    <button mat-raised-button
+    color="primary"
+    (click)="dialog.close()"
+    >Cerrar</button>
+</mat-dialog-actions>

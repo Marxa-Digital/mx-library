@@ -1,0 +1,12 @@
+[submodule "projects/marxa/storage/src/lib"]
+	path = projects/marxa/storage/src/lib
+	url = https://github.com/jgu7man/mx-storage
+[submodule "src/app/mx-storage"]
+	path = src/app/mx-storage
+	url = https://github.com/jgu7man/mx-storage
+[submodule "projects/marxa/devkit/src/lib"]
+	path = projects/marxa/devkit/src/lib
+	url = https://github.com/jgu7man/mx-devkit
+[submodule "src/app/mx-devkit"]
+	path = src/app/mx-devkit
+	url = https://github.com/jgu7man/mx-devkit

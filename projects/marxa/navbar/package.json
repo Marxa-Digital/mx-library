@@ -9,5 +9,13 @@
     "tslib": "^2.0.0",
     "@marxa/devkit": "^0.0.9",
     "@marxa/search": "^0.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jgu7man/mx-navbar"
+  },
+  "author": {
+    "name": "Jorge Guzman",
+    "email": "jguzman@marxadigital.com"
   }
 }

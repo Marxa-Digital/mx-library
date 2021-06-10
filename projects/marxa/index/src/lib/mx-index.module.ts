@@ -15,7 +15,7 @@ import { MxSortPipe } from './mx-sort.pipe';
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
   ],
   exports: [
     MxIndexCallerComponent,

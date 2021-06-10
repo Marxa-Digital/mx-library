@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MxSocialShareComponent } from './social-share.component';
+import { MaterialModule } from '../shared/material.module';
 
 
 
@@ -9,7 +10,8 @@ import { MxSocialShareComponent } from './social-share.component';
     MxSocialShareComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule
   ],
   exports: [
     MxSocialShareComponent

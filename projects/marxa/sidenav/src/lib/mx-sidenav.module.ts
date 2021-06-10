@@ -3,20 +3,20 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { MxSidenavComponent } from './mx-sidenav.component';
-import { MxColorsModule } from '../color/mx-colors.module';
-import { MaterialModule } from '../../shared/material.module';
+import { MaterialModule } from '../shared/material.module';
+import { MxDevkitModule } from '@marxa/devkit';
 
 
 
 @NgModule({
   declarations: [
-    MxSidenavComponent
+    MxSidenavComponent,
   ],
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule,
-    MxColorsModule
+    MxDevkitModule
   ],
   exports: [
     MxSidenavComponent

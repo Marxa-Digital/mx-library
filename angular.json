@@ -35,6 +35,9 @@
             ],
             "scripts": []
           },
+          "allowedCommonJsDependencies": [
+            "export-to-csv"
+          ],
           "configurations": {
             "production": {
               "fileReplacements": [

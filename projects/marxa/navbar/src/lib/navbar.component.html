@@ -1,37 +1,155 @@
-<mat-toolbar gdev-color [color]="'white'" [background]="'primary'" id="navbar">
-    <span class="hide-on-large-only mobile-menu" (click)="navbarService.toggleMobileMenu.emit()">
-        <i class="fas fa-bars"></i>
-    </span>
+<mat-drawer-container>
 
-    <span>{{appTitle}}</span>
+  <mat-drawer #sidebar position="end">
+    <div class="container" id="mobile-menu">
+      <div class="row">
+        <div class="col s12" (click)="sidebar.toggle()">
+          <button mat-icon-button>
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <div class="col s12">
+          <!-- LOGO -->
+          <div class="logo-container" [routerLink]="['/']">
+            <ng-container *ngIf="logo; else appTitle">
+              <img [src]="logo" [alt]="title" />
+            </ng-container>
+            <ng-template #appTitle>
+              {{title}}
+            </ng-template>
+          </div>
 
-    <span class="espacio"></span>
+          <!-- BUSCADOR -->
+          <div class="buscador-container" *ngIf="showSearcher">
+            <span class="center"> {{searcherLabel}} </span>
+            <!-- <g-searcher></g-searcher> -->
+          </div>
+        </div>
+      </div>
 
-    <div class="col right user-profile" *ngIf="user; else unlogged">
+      <mat-divider color="primary"></mat-divider>
 
-        <button mat-icon-button
-        [matMenuTriggerFor]="menuProfile"
-        ><i class="fas fa-chevron-circle-down"></i></button>
-        <mat-menu #menuProfile="matMenu">
+      <!-- LOG ZONE -->
+      <div *ngIf="showLogzone">
+        <div class="col right user-profile" *ngIf="user; else unlogged">
+          <div class="imgProfileContainer" [matMenuTriggerFor]="menuProfile">
+            <img src="{{ user.photoURL }}" alt="image profile" />
+          </div>
+
+          <p class="userName">{{ user.displayName }}</p>
+          <mat-menu #menuProfile="matMenu">
             <button
-            mat-menu-item
-            *ngFor="let item of menuStructure"
-            [routerLink]="[item.route]"
-            >{{item.name}}</button>
+              mat-menu-item
+              *ngFor="let item of menu"
+              [routerLink]="[item.route]"
+            >
+              {{ item.name }}
+            </button>
 
-            <button mat-menu-item
-            (click)="auth.singOut()"
-            >Cerrar sesión</button>
-        </mat-menu>
+            <button mat-menu-item (click)="auth.singOut()">Cerrar sesión</button>
+          </mat-menu>
 
-        <div class="imgProfileContainer">
-            <img src="{{user.photoURL}}" alt="">
+
         </div>
 
-        <p class="userName"> {{user.displayName}} </p>
-    </div>
+        <ng-template #unlogged>
+          <mx-login-button (isLogged)="user = $event"></mx-login-button>
+        </ng-template>
+      </div>
 
-    <ng-template #unlogged>
-        <!-- <mx-login-button (isLogged)="user = $event"></mx-login-button> -->
+      <div class="row" id="menus">
+
+        <div class="col s12">
+          <a [mxColor]="linkColor"
+          class="topbar-item link"
+          [routerLinkActive]="'active'"
+          *ngFor="let item of menu"
+          [routerLink]="[item.route]"
+          >
+            {{ item.name }}
+        </a>
+        </div>
+
+
+      </div>
+    </div>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <mat-toolbar [mxColor]="'white'" [mxBackground]="'main'" id="navbar"
+    class="mat-elevation-z5">
+
+    <!-- LOGO -->
+    <div class="logo-container" [routerLink]="['/']">
+      <ng-container *ngIf="logo; else appTitle">
+        <img [src]="logo" [alt]="title" />
+      </ng-container>
+      <ng-template #appTitle>
+        {{title}}
+      </ng-template>
+    </div>
+    <ng-container *ngIf="responsive.large; else mobile">
+
+      <!-- BUSCADOR -->
+      <div class="buscador-container" *ngIf="showSearcher" >
+        <!-- <g-searcher></g-searcher> -->
+      </div>
+
+      <!-- MENÚ -->
+      <div>
+
+        <a mat-button
+          [mxColor]="linkColor"
+          class="topbar-item link"
+          [routerLinkActive]="'active'"
+          *ngFor="let item of menu"
+          [routerLink]="[item.route]"
+          >
+            {{ item.name }}
+        </a>
+      </div>
+
+      <!-- LOG ZONE -->
+      <div *ngIf="showLogzone">
+        <div class="col right user-profile" *ngIf="user; else unlogged">
+          <div class="imgProfileContainer" [matMenuTriggerFor]="menuProfile">
+            <img src="{{ user.photoURL }}" alt="image profile" />
+          </div>
+
+          <p class="userName">{{ user.displayName }}</p>
+          <mat-menu #menuProfile="matMenu">
+            <button
+              mat-menu-item
+              *ngFor="let item of menu"
+              [routerLink]="[item.route]"
+            >
+              {{ item.name }}
+            </button>
+
+            <button mat-menu-item (click)="auth.singOut()">Cerrar sesión</button>
+          </mat-menu>
+
+
+        </div>
+
+        <ng-template #unlogged>
+          <ng-container *ngIf="loginMethod != 'link'; else emailMethod">
+            <mx-login-button [method]="loginMethod" (isLogged)="user = $event"></mx-login-button>
+          </ng-container>
+          <ng-template #emailMethod>
+            <a [routerLink]="[loginButtonLink]" mat-raised-button>{{loginButtonLabel}}</a>
+          </ng-template>
+        </ng-template>
+      </div>
+
+
+    </ng-container>
+    <ng-template #mobile>
+      <button mat-icon-button (click)="sidebar?.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
     </ng-template>
-</mat-toolbar>
+    </mat-toolbar>
+
+  </mat-drawer-content>
+</mat-drawer-container>

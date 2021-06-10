@@ -1,8 +1,9 @@
-import { MxAuth } from '@marxa/auth/src/lib/auth.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { MxNavbarService } from './navbar.service';
 import firebase from 'firebase/app'
 import { MxNavbarMenuNode } from './navlink.interface';
+import { MxAuth } from '@marxa/auth';
+import { MxResponsive } from '@marxa/devkit';
 
 @Component({
   selector: 'mx-navbar',
@@ -11,15 +12,23 @@ import { MxNavbarMenuNode } from './navlink.interface';
 })
 export class MxNavbarComponent implements OnInit {
 
-  @Input() appTitle: string = ''
+  @Input() title: string = 'app-logo'
+  @Input() logo: string = ''
+  @Input() linkColor: string = '#202020'
   @Input() unloggedPath: string = ''
-  @Input() menuStructure: MxNavbarMenuNode[] = [
-  ]
+  @Input() menu: MxNavbarMenuNode[] = []
+  @Input() showSearcher: boolean = false
+  @Input() searcherLabel: string = ''
+  @Input() showLogzone: boolean = false
+  @Input() loginMethod: 'link' | 'google' | 'facebook' = 'link'
+  @Input() loginButtonLabel: string = 'Ingresar'
+  @Input() loginButtonLink: string = '/'
 
   user: firebase.User | null = null
   constructor(
     public auth: MxAuth,
-    public navbarService: MxNavbarService
+    public navbarService: MxNavbarService,
+    public responsive: MxResponsive
   ) { }
 
   async ngOnInit() {

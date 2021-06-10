@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MxAlert } from '@marxa/devkit';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'marxa-devs';
-  constructor() { }
+  constructor(
+    public alert: MxAlert
+  ) { }
 
 }

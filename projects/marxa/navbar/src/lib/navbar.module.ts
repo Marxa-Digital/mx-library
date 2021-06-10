@@ -4,9 +4,9 @@ import { RouterModule } from '@angular/router';
 
 import { MxNavbarComponent } from "./navbar.component";
 import { MxNavbarLoginComponent } from './login/login.component';
-import { MxColorsModule } from '../color/mx-colors.module';
-import { MxAuthModule } from '@marxa/auth/src/lib/auth.module';
-import { MaterialModule } from 'projects/marxa/devkit/shared/material.module';
+import { MxColorsModule, MxResponsiveModule } from '@marxa/devkit';
+import { MaterialModule } from '../shared/material.module';
+import { MxAuthModule } from '@marxa/auth';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import { MaterialModule } from 'projects/marxa/devkit/shared/material.module';
     MaterialModule,
     RouterModule,
     MxColorsModule,
-    MxAuthModule
+    MxAuthModule,
+    MxResponsiveModule
   ],
   exports: [
     MxNavbarComponent,

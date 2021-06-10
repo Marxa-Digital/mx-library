@@ -1,29 +1,30 @@
 <mat-accordion [displayMode]="'flat'">
-    <mat-expansion-panel
-        *ngFor="let parent of structure"
-        gdev-color
-        [background]="'complement1'"
-        [color]="'bg1'"
-        [expanded]="parent.routeId ?  onActive(parent.routeId) : null"
-        #parentPanel
-        >
-        <mat-expansion-panel-header
-            *ngIf="!parent.disable"
-            [routerLink]="parent.route ? [parent.route] : []"
-            [ngClass]="{'active': parentPanel.expanded}"
-            >
-            {{parent.name}}
-        </mat-expansion-panel-header>
-        <div class="collection" *ngIf="parent.childs">
-            <a *ngFor="let child of enableChilds(parent.childs); "
-            [routerLink]="[child.route]"
-            routerLinkActive="active"
-            class="collection-item"
-            gdev-color
-            [color]="'bg1'"
-            [background]="'complement2'"
-            >{{child.name}}</a>
-        </div>
-    </mat-expansion-panel>
-
+  <mat-expansion-panel
+    *ngFor="let parent of structure"
+    mxColor
+    [mxBackground]="fontColor"
+    [mxColor]="backgroundColor"
+    [expanded]="parent.routeId ? onActive(parent.routeId) : null"
+    #parentPanel
+  >
+    <mat-expansion-panel-header
+      *ngIf="!parent.disable"
+      [routerLink]="parent.route ? [parent.route] : []"
+      [ngClass]="{ active: parentPanel.expanded }"
+    >
+      {{ parent.name }}
+    </mat-expansion-panel-header>
+    <div class="collection" *ngIf="parent.childs">
+      <a
+        *ngFor="let child of enableChilds(parent.childs)"
+        [routerLink]="[child.route]"
+        routerLinkActive="active"
+        class="collection-item"
+        mxColor
+        [mxColor]="backgroundColor"
+        [mxBackground]="'complement2'"
+        >{{ child.name }}</a
+      >
+    </div>
+  </mat-expansion-panel>
 </mat-accordion>

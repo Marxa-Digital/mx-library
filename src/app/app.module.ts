@@ -8,18 +8,24 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FirebaseModule } from './shared/firebase.module';
 import {environment} from '../environments/environment'
-import { MxStorageModule } from './mx-storage/src/public-api';
+import { MarxaModule } from './shared/marxa.module';
+import { MxStorageModule } from './mx-storage/mx-storage.module';
+import { MaterialModule } from './shared/material.module';
+import { TestComponent } from './test/test.component';
+// import { MxDevkitModule } from './mx-devkit/marxa-devkit.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MxStorageModule,
     FirebaseModule,
+    MaterialModule,
+    MxStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [],

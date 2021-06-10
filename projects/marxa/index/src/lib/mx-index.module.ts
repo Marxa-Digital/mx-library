@@ -11,7 +11,7 @@ import { MxSortPipe } from './mx-sort.pipe';
   declarations: [
     MxIndexCallerComponent,
     MxSortOptionsComponent,
-    MxSortPipe
+    MxSortPipe,
   ],
   imports: [
     CommonModule,

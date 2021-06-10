@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 
 @Component({
   selector: 'mx-social-share',
@@ -10,13 +11,24 @@ export class MxSocialShareComponent implements OnInit {
   @Input() ARTICLE_TITLE: string = ''
   @Input() ARTICLE_URL: string = ''
   @Input() MAIN_IMAGE_URL: string = ''
+  @Input() social_networks: string[] = []
 
   public urlEncoded: string = ''
   public imgEncoded: string = ''
 
-  constructor() { }
+  constructor(
+    @Inject(DOCUMENT) private doc: any
+  ) { }
 
   ngOnInit() {
+    const fontawesome = 'https://use.fontawesome.com/releases/v5.8.2/css/all.css'
+    let link: HTMLLinkElement | null = document.querySelector(`[href="${fontawesome}"]`)
+    if (!link) {
+      link = this.doc.createElement('link') as HTMLLinkElement
+      link.setAttribute('rel', 'stylesheet');
+      link.setAttribute('href', fontawesome );
+      this.doc.head.appendChild(link);
+    }
   }
 
   onShare(social: string) {

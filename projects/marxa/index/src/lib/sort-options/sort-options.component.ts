@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MxIndexService } from '../mx-index.service';
+import { MxIndex } from '../mx-index.service';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -33,7 +33,7 @@ export class MxSortOptionsComponent implements OnInit {
   /** Activates the compareOptions. To it works need define `sort_fields` */
   @Input() compareOptions: boolean = true
 
-  constructor(public index: MxIndexService  ) { }
+  constructor(public index: MxIndex  ) { }
 
   ngOnInit(): void {
     // this._field.subscribe( field => {

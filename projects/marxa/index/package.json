@@ -6,6 +6,8 @@
     "@angular/core": "^11.0.9"
   },
   "dependencies": {
+    "@marxa/devkit": "^0.0.9",
+    "lodash": "^4.17.21",
     "tslib": "^2.0.0"
   }
 }

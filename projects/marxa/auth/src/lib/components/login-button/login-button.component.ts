@@ -13,9 +13,10 @@ export class LoginButtonComponent implements OnInit {
   @Input() public signInLabel: string = 'Iniciar sesión'
   @Input() public adverticeLabel: string = 'IMPORTANTE'
   @Input() public googleAccountAdverticeLabel: string = '<p>Debes tener una cuenta de Google <i>(tunombredeusuario@<b>gmail.com</b>)</i> para iniciar sesión.</p>'
-  @Input() public adverticeConfirmBtn: string = 'Got It'
+  @Input() public adverticeConfirmBtn: string = 'Entiendo'
 
   @Input() accountAdvertice: boolean = true
+  @Input() method: 'google' | 'facebook' = 'google'
   @Output() isLogged: EventEmitter<any> = new EventEmitter()
   constructor(
     public dialog: MatDialog,
@@ -30,20 +31,34 @@ export class LoginButtonComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(LoginButtonDialog, {
-      width: '350px',
-      data: {
-        adverticeLabel: this.adverticeLabel,
-        googleAccountAdverticeLabel: this.googleAccountAdverticeLabel,
-        adverticeConfirmBtn: this.adverticeConfirmBtn
-      }
-    });
+    if (this.accountAdvertice) {
+      const dialogRef = this.dialog.open(LoginButtonDialog, {
+        width: '350px',
+        data: {
+          adverticeLabel: this.adverticeLabel,
+          googleAccountAdverticeLabel: this.googleAccountAdverticeLabel,
+          adverticeConfirmBtn: this.adverticeConfirmBtn
+        }
+      });
 
-    dialogRef.afterClosed().subscribe(result => {
+      dialogRef.afterClosed().subscribe(result => {
+        this.loginMethod()
+      });
+    } else {
+      this.loginMethod()
+    }
+  }
+
+  loginMethod() {
+    if (this.method == 'google') {
       this._login.googleSingIn().then(user => {
         this.isLogged.emit(user)
       })
-    });
+    } else {
+      this._login.facebookSingIn().then(user => {
+        this.isLogged.emit(user)
+      })
+    }
   }
 
 

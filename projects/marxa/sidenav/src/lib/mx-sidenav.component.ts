@@ -12,6 +12,8 @@ import { MxSidenavService } from './mx-sidenav.service';
 export class MxSidenavComponent implements  AfterViewInit {
 
   @Input() structure: MxSidenavNode[] = []
+  @Input() fontColor: string = ''
+  @Input() backgroundColor: string = ''
 
   constructor (
     public location: Location,

@@ -5,7 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { MxSliderComponent } from './gdev-slider/mx-slider.component';
 import { MxSliderConfigComponent } from './gdev-slider-config/mx-slider-config.component';
-import { FirebaseModule } from '../../shared/firebase.module';
+import { FirebaseModule } from '../shared/firebase.module';
 
 
 
@@ -17,7 +17,7 @@ import { FirebaseModule } from '../../shared/firebase.module';
   ],
   imports: [
     CommonModule,
-    MatCarouselModule.forRoot(),
+    MatCarouselModule,
     FormsModule,
     ReactiveFormsModule,
     FirebaseModule

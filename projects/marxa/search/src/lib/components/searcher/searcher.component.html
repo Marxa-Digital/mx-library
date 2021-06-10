@@ -1,0 +1,18 @@
+<mat-form-field appearance="outline" [color]="'primary'" defaultColor="primary">
+  <mat-label><i class="fas fa-search"></i> Buscar</mat-label>
+  <input
+  matInput
+  type="text"
+  name="name"
+  [formControl]="buscadorCtrl"
+  [matAutocomplete]="auto"
+  (keyup.ENTER)="onSubmit()"
+  >
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"
+  (optionSelected)="onSubmit()">
+    <mat-option *ngFor="let item of filtered | async" [value]="item">
+      {{item[selector]}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+

@@ -7,6 +7,7 @@ import { MxNavbarLoginComponent } from './login/login.component';
 import { MxColorsModule, MxResponsiveModule } from '@marxa/devkit';
 import { MaterialModule } from '../shared/material.module';
 import { MxAuthModule } from '@marxa/auth';
+import { MxSearchModule } from '@marxa/search';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MxAuthModule } from '@marxa/auth';
     RouterModule,
     MxColorsModule,
     MxAuthModule,
-    MxResponsiveModule
+    MxResponsiveModule,
+    MxSearchModule
   ],
   exports: [
     MxNavbarComponent,

@@ -10,3 +10,6 @@
 [submodule "src/app/mx-devkit"]
 	path = src/app/mx-devkit
 	url = https://github.com/jgu7man/mx-devkit
+[submodule "projects/marxa/search/src/lib"]
+	path = projects/marxa/search/src/lib
+	url = https://github.com/jgu7man/mx-search

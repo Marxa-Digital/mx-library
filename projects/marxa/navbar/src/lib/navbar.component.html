@@ -1,6 +1,8 @@
-<mat-drawer-container>
+<mat-drawer-container id="mx-navbar-container">
 
-  <mat-drawer #sidebar position="end">
+  <mat-drawer #sidebar position="end"
+  [mxBackground]="backgroundColor" [mxColor]="fontColor"
+  >
     <div class="container" id="mobile-menu">
       <div class="row">
         <div class="col s12" (click)="sidebar.toggle()">
@@ -22,7 +24,12 @@
           <!-- BUSCADOR -->
           <div class="buscador-container" *ngIf="showSearcher">
             <span class="center"> {{searcherLabel}} </span>
-            <!-- <g-searcher></g-searcher> -->
+            <mx-searcher
+            [collection]="searchCollection"
+            [selector]="searchSelector"
+            [lengthTrigger]="searchTrigger"
+            (selected)="onSearch.emit($event)"
+            ></mx-searcher>
           </div>
         </div>
       </div>
@@ -38,13 +45,12 @@
 
           <p class="userName">{{ user.displayName }}</p>
           <mat-menu #menuProfile="matMenu">
-            <button
-              mat-menu-item
-              *ngFor="let item of menu"
+            <a mat-menu-item
+              *ngFor="let item of userMenu"
               [routerLink]="[item.route]"
             >
               {{ item.name }}
-            </button>
+            </a>
 
             <button mat-menu-item (click)="auth.singOut()">Cerrar sesión</button>
           </mat-menu>
@@ -53,7 +59,17 @@
         </div>
 
         <ng-template #unlogged>
-          <mx-login-button (isLogged)="user = $event"></mx-login-button>
+          <ng-container *ngIf="loginMethod != 'link'; else emailMethod">
+            <mx-login-button
+            (isLogged)="user = $event"
+            [method]="loginMethod"
+            [accountAdvertice]="false"
+            [signOutLabel]="logoutLabel"
+            ></mx-login-button>
+          </ng-container>
+          <ng-template #emailMethod>
+            <a [routerLink]="[loginButtonLink]" mat-raised-button>{{loginButtonLabel}}</a>
+          </ng-template>
         </ng-template>
       </div>
 
@@ -76,7 +92,7 @@
   </mat-drawer>
 
   <mat-drawer-content>
-    <mat-toolbar [mxColor]="'white'" [mxBackground]="'main'" id="navbar"
+    <mat-toolbar [mxColor]="fontColor" [mxBackground]="backgroundColor" id="navbar"
     class="mat-elevation-z5">
 
     <!-- LOGO -->
@@ -92,7 +108,12 @@
 
       <!-- BUSCADOR -->
       <div class="buscador-container" *ngIf="showSearcher" >
-        <!-- <g-searcher></g-searcher> -->
+        <mx-searcher
+        [collection]="searchCollection"
+        [selector]="searchSelector"
+        [lengthTrigger]="searchTrigger"
+        (selected)="onSearch.emit($event)"
+        ></mx-searcher>
       </div>
 
       <!-- MENÚ -->
@@ -101,7 +122,12 @@
         <a mat-button
           [mxColor]="linkColor"
           class="topbar-item link"
-          [routerLinkActive]="'active'"
+          routerLinkActive
+          #active="routerLinkActive"
+          [ngStyle]="{
+            'border-bottom': 'solid 1px '+linkColor,
+            'color': activeLinkColor
+          }"
           *ngFor="let item of menu"
           [routerLink]="[item.route]"
           >
@@ -134,7 +160,12 @@
 
         <ng-template #unlogged>
           <ng-container *ngIf="loginMethod != 'link'; else emailMethod">
-            <mx-login-button [method]="loginMethod" (isLogged)="user = $event"></mx-login-button>
+            <mx-login-button
+            (isLogged)="user = $event"
+            [method]="loginMethod"
+            [accountAdvertice]="false"
+            [signOutLabel]="logoutLabel"
+            ></mx-login-button>
           </ng-container>
           <ng-template #emailMethod>
             <a [routerLink]="[loginButtonLink]" mat-raised-button>{{loginButtonLabel}}</a>

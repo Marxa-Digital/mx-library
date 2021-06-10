@@ -133,11 +133,12 @@ export class MxAuth {
 
 
 
-  //? Sing out
+  //? Sign out
 
-  async singOut() {
+  async signOut() {
     await this.afAuth.signOut();
-    return this.router.navigate( [ this.unloggedPath ] );
+    return this.router.navigateByUrl('/', { skipLocationChange: true })
+      .then(() => this.router.navigate([this.unloggedPath]))
   }
 
 }

@@ -1,5 +1,6 @@
 # Slider
 Auxiliar para agregar un slider en tu proyeto de Angular
+
 ## Primerso pasos
 
 | :exclamation:  IMPORTANTE :exclamation: |
@@ -55,14 +56,14 @@ export class AppModule { }
 ## Modo de uso
 Importa el módulo a tu proyecto
 ```ts
-import { MxSlider } from "@marxa/devkit";
+import { MxSliderModule } from "@marxa/devkit";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    MxSlider
+    MxSliderModule
   ],
   bootstrap: [AppComponent]
 })

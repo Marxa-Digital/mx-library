@@ -19,3 +19,6 @@
 [submodule "projects/marxa/index/src/lib"]
 	path = projects/marxa/index/src/lib
 	url = https://github.com/jgu7man/mx-index
+[submodule "projects/marxa/slider/src/lib"]
+	path = projects/marxa/slider/src/lib
+	url = https://github.com/jgu7man/mx-slider

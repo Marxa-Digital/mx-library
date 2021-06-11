@@ -9,6 +9,7 @@
     }
   },
   "allowedNonPeerDependencies": [
-    "@marxa/devkit"
+    "@marxa/devkit",
+    "lodash"
   ]
 }

@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "tslib": "^2.0.0",
-    "@marxa/devkit": "^0.0.9",
+    "@marxa/devkit": "^0.0.10",
     "@marxa/search": "^0.0.1"
   },
   "repository": {

@@ -22,3 +22,6 @@
 [submodule "projects/marxa/slider/src/lib"]
 	path = projects/marxa/slider/src/lib
 	url = https://github.com/jgu7man/mx-slider
+[submodule "projects/marxa/social-share/src/lib"]
+	path = projects/marxa/social-share/src/lib
+	url = https://github.com/jgu7man/mx-social-share.git

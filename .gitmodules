@@ -25,3 +25,6 @@
 [submodule "projects/marxa/social-share/src/lib"]
 	path = projects/marxa/social-share/src/lib
 	url = https://github.com/jgu7man/mx-social-share.git
+[submodule "projects/marxa/auth/src/lib"]
+	path = projects/marxa/auth/src/lib
+	url = https://github.com/jgu7man/mx-auth.git

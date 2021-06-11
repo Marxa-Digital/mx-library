@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 // import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
-import { MxSliderService, MxSliderConfig, MxSlide } from '../mx-slider.service';
+import { MxSlider } from '../mx-slider.service';
 import { Router } from '@angular/router';
+import { MxSlide, MxSliderConfig } from '../mx-slider.model';
 
 @Component({
   selector: 'mx-slider',
@@ -15,7 +16,7 @@ export class MxSliderComponent implements OnInit {
   @Input() slidesCollection: string = ''
 
   constructor (
-    public _slider: MxSliderService,
+    public _slider: MxSlider,
     private router: Router
   ) {
     this.sliderConfig = this._slider.sliderConfig

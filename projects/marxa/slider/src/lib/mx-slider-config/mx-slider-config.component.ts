@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MxSliderService, MxSliderConfig } from '../mx-slider.service';
+import { MxSlider } from '../mx-slider.service';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatSliderChange } from '@angular/material/slider';
 import { Location } from '@angular/common';
+import { MxSliderConfig } from '../mx-slider.model';
 
 
 interface FX { value: string, display: string }
@@ -31,7 +32,7 @@ export class MxSliderConfigComponent implements OnInit {
   ]
 
   constructor (
-    private _slider: MxSliderService,
+    private _slider: MxSlider,
     public location: Location
   ) {
     this.SliderConfig = this._slider.sliderConfig

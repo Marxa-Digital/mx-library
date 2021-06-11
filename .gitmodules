@@ -16,3 +16,6 @@
 [submodule "projects/marxa/navbar/src/lib"]
 	path = projects/marxa/navbar/src/lib
 	url = https://github.com/jgu7man/mx-navbar
+[submodule "projects/marxa/index/src/lib"]
+	path = projects/marxa/index/src/lib
+	url = https://github.com/jgu7man/mx-index

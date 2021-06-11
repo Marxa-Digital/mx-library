@@ -6,11 +6,12 @@ import { Location } from '@angular/common';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { ThemePalette } from '@angular/material/core';
 import { Orientation } from './mat-carousel/carousel';
+import { MxSlide, MxSliderConfig } from './mx-slider.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MxSliderService {
+export class MxSlider {
 
 
   sliderConfig: MxSliderConfig = {
@@ -45,16 +46,16 @@ export class MxSliderService {
   async addSlide( slide: MxSlide, collection?: string ) {
     const slidesRef = this.fs.collection( collection
         ? `${ collection }/slider/slides`
-        : 'gdev-tools/slider/slides' )
+        : 'marxa-devs/slider/slides' )
     var nuSlide = await slidesRef.add( slide )
     slidesRef.doc(nuSlide.id).update({id: nuSlide.id})
     return
   }
 
-  async getSlidesList( collection?: string) {
-    this.slides$ = this.fs.collection( collection
+  getSlidesList( collection?: string) {
+    return this.fs.collection<MxSlide>( collection
         ? `${ collection }/slider/slides`
-        : 'gdev-tools/slider/slides' )
+        : 'marxa-devs/slider/slides' )
     .valueChanges()
   }
 
@@ -63,7 +64,7 @@ export class MxSliderService {
     try {
       const sliderRef = this.fs.collection( collection
         ? `${ collection }/slider/slides`
-        : 'gdev-tools/slider/slides'
+        : 'marxa-devs/slider/slides'
       ).ref.where('activado','==', true)
 
 
@@ -84,7 +85,7 @@ export class MxSliderService {
   async updateSlide( slide: MxSlide, collection?: string ) {
     const slidesRef = this.fs.collection( collection
       ? `${ collection }/slider/slides`
-      : 'gdev-tools/slider/slides' ).ref
+      : 'marxa-devs/slider/slides' ).ref
     slidesRef.doc( slide.id ).update( slide )
     // this.alertas.sendFloatNotification('Slide modificada')
     return
@@ -94,16 +95,16 @@ export class MxSliderService {
   async deleteSlide( slide: MxSlide, collection?: string ) {
     await this.fs.collection( collection
       ? `${ collection }/slider/slides`
-      : 'gdev-tools/slider/slides' ).ref
+      : 'marxa-devs/slider/slides' ).ref
       .doc( slide.id ).delete()
-    await this.storage.storage.refFromURL( slide.image ).delete()
+    await this.storage.storage.refFromURL( slide.imageURL ).delete()
     // this.alertas.sendFloatNotification('Se borró la slide')
     return
   }
 
   async loadConfiguration( collection?: string) {
     const sliderRef = this.fs.collection( collection
-      ? collection : 'gdev-tools' ).ref.doc( 'slider' )
+      ? collection : 'marxa-devs' ).ref.doc( 'slider' )
     const sliderDoc = await sliderRef.get()
     if ( sliderDoc.exists ) {
       this.$sliderConfig.next(sliderDoc.data() as MxSliderConfig)
@@ -114,7 +115,7 @@ export class MxSliderService {
   async setSliderConfiguration( config: MxSliderConfig, collection?: string ) {
     try {
       const sliderRef = this.fs.collection( collection
-        ? collection : 'gdev-tools' ).ref.doc( 'slider' )
+        ? collection : 'marxa-devs' ).ref.doc( 'slider' )
       await sliderRef.set( config, { merge: true } )
       // this.alertas.sendMessageAlert( 'Se guardó la configuración' )
       this.location.back()
@@ -126,36 +127,4 @@ export class MxSliderService {
   }
 
 
-}
-
-export interface MxSlide {
-  image: string
-  activado: boolean
-  nombre: string
-  id?: string,
-  enlace?: MxLink,
-}
-
-export interface MxLink {
-  url: string,
-  newTab: boolean
-}
-
-
-export interface MxSliderConfig {
-  timings:string
-  autoplay:boolean
-  interval: number
-  color: ThemePalette,
-  maxWidth:string
-  proportion: number
-  slides: number
-  loop: boolean
-  hideArrows: boolean
-  hideIndicators: boolean
-  useKeyboard:boolean
-  useMouseWheel:boolean
-  orientation: Orientation
-  maintainAspectRatio?: boolean
-  slideHeight?:string
 }

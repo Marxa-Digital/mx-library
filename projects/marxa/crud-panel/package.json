@@ -1,11 +1,12 @@
 {
   "name": "@marxa/crud-panel",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "peerDependencies": {
     "@angular/common": "^11.0.9",
     "@angular/core": "^11.0.9"
   },
   "dependencies": {
+    "@marxa/devkit": "^0.0.11",
     "tslib": "^2.0.0"
   },
   "repository": {

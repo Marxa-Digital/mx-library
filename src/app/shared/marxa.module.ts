@@ -1,17 +1,30 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MxDevkitModule } from '../mx-devkit/marxa-devkit.module';
-import { MxStorageModule } from '../mx-storage/mx-storage.module';
+
+import {
+  MxColorsModule,
+  MxResponsiveModule,
+  MxDateTimeModule,
+  MxTextModule,
+} from "projects/marxa/devkit/src/public-api";
+import { MxAuthModule } from 'projects/marxa/auth/src/public-api';
+import { MxIndexModule } from "projects/marxa/index/src/public-api";
+import { MxNavbarModule } from "projects/marxa/navbar/src/public-api";
+import { MxSliderModule } from "projects/marxa/slider/src/public-api";
+import { MxStorageModule } from 'projects/marxa/storage/src/public-api';
+import { MxSocialShareModule } from "projects/marxa/social-share/src/public-api";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MxDevkitModule,
-    MxStorageModule
-  ], exports: [
-    MxDevkitModule,
-    MxStorageModule
+  exports: [
+    MxAuthModule,
+    MxColorsModule,
+    MxResponsiveModule,
+    MxDateTimeModule,
+    MxTextModule,
+    MxIndexModule,
+    MxNavbarModule,
+    MxSliderModule,
+    MxStorageModule,
+    MxSocialShareModule,
   ]
 })
-export class MarxaModule {
-}
+export class MarxaModule {}

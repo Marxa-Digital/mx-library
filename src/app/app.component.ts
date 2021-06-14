@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MxAlert } from '@marxa/devkit';
+import { MxColor } from 'projects/marxa/devkit/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,12 @@ import { MxAlert } from '@marxa/devkit';
 export class AppComponent {
   title = 'marxa-devs';
   constructor(
-    public alert: MxAlert
-  ) { }
+    public alert: MxAlert,
+    private _color: MxColor
+  ) {
+    this._color.ColorPalette = {
+      main: '#005daa'
+    }
+  }
 
 }

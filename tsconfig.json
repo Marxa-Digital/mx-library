@@ -63,6 +63,10 @@
       "@marxa/storage": [
         "dist/marxa/storage/marxa-storage",
         "dist/marxa/storage"
+      ],
+      "@marxa/crud-panel": [
+        "dist/marxa/crud-panel/marxa-crud-panel",
+        "dist/marxa/crud-panel"
       ]
     }
   },

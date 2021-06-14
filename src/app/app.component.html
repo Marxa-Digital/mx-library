@@ -1,16 +1,18 @@
-<div class="container">
-  <div class="row">
-    <div class="col s12">
+<mx-crud-panel
+listName="Entradas de blog"
+[selectTemplate]="select"
+[addTemplate]="add"
+[height_vh]="90"
+itemSelector="nombre"
+mxStrechHeight
+#crudPanel
+>
+  <ng-template #add>
+    <!-- <app-post (onSave)="crudPanel.closePanel()"></app-post> -->
+  </ng-template>
 
-      <mat-tab-group>
-        <mat-tab label="Slider">
-          <mx-slider-crud></mx-slider-crud>
-        </mat-tab>
-        <mat-tab label="Configuración">
-          <mx-slider-config></mx-slider-config>
-        </mat-tab>
-      </mat-tab-group>
+  <ng-template #select let-slide="item" >
+    <!-- <app-post (onUpdate)="crudPanel.closePanel()" [post]="post"></app-post> -->
+  </ng-template>
+</mx-crud-panel>
 
-    </div>
-  </div>
-</div>

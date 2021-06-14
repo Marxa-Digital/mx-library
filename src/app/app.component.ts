@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MxAlert } from '@marxa/devkit';
+import { MxCrudPanel } from 'projects/marxa/crud-panel/src/public-api';
 import { MxColor } from 'projects/marxa/devkit/src/public-api';
 
 @Component({
@@ -9,6 +10,7 @@ import { MxColor } from 'projects/marxa/devkit/src/public-api';
 })
 export class AppComponent {
   title = 'marxa-devs';
+
   constructor(
     public alert: MxAlert,
     private _color: MxColor

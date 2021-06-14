@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "ng build @marxa/auth --prod",
+    "build:lib": "sudo rm -rf \"dist/marxa/auth\" && ng build @marxa/auth --prod",
     "link": "cd \"dist/marxa/auth\" && sudo npm link",
     "link:lib": "sudo npm link dist/marxa/auth",
     "publish:package": "cd \"dist/marxa/auth\" && sudo npm publish",

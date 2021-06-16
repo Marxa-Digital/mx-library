@@ -20,4 +20,8 @@ export class AppComponent {
     }
   }
 
+  getItem(item: any) {
+    console.log( item )
+  }
+
 }

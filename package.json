@@ -8,12 +8,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "sudo rm -rf \"dist/marxa/devkit\" && ng build @marxa/devkit --prod",
-    "link": "cd \"dist/marxa/devkit\" && sudo npm link",
-    "link:lib": "sudo npm link dist/marxa/devkit",
-    "publish:package": "cd \"dist/marxa/devkit\" && sudo npm publish",
-    "export:styles": "sudo cpx \"projects/marxa/devkit/src/lib/styles/**/*\" \"dist/marxa/devkit/styles\" ",
-    "publish": "npm run build:lib && npm run link && npm run link:lib && npm run export:styles && npm run publish:package && npm i -s @marxa/devkit@latest"
+    "build:lib": "sudo rm -rf \"dist/marxa/crud-panel\" && ng build @marxa/crud-panel --prod",
+    "link": "cd \"dist/marxa/crud-panel\" && sudo npm link",
+    "link:lib": "sudo npm link dist/marxa/crud-panel",
+    "publish:package": "cd \"dist/marxa/crud-panel\" && sudo npm publish",
+    "export:styles": "sudo cpx \"projects/marxa/crud-panel/src/lib/styles/**/*\" \"dist/marxa/crud-panel/styles\" ",
+    "publish": "npm run build:lib && npm run link && npm run link:lib && npm run export:styles && npm run publish:package && npm i -s @marxa/crud-panel@latest"
   },
   "private": true,
   "dependencies": {
@@ -29,7 +29,8 @@
     "@angular/platform-browser-dynamic": "~11.0.5",
     "@angular/router": "~11.0.5",
     "@marxa/auth": "^0.0.4",
-    "@marxa/devkit": "^0.0.12",
+    "@marxa/crud-panel": "^0.0.4",
+    "@marxa/devkit": "^0.0.13",
     "@marxa/navbar": "^0.0.2",
     "@marxa/search": "^0.0.2",
     "@marxa/slider": "^0.0.4",

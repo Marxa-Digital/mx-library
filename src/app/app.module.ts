@@ -11,6 +11,7 @@ import {environment} from '../environments/environment'
 import { MarxaModule } from './shared/marxa.module';
 import { MaterialModule } from './shared/material.module';
 import { TestComponent } from './test/test.component';
+import { DatePipe } from '@angular/common';
 // import { MxDevkitModule } from './mx-devkit/marxa-devkit.module';
 
 @NgModule({
@@ -27,7 +28,9 @@ import { TestComponent } from './test/test.component';
     MarxaModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   schemas: [
     // CUSTOM_ELEMENTS_SCHEMA
   ],

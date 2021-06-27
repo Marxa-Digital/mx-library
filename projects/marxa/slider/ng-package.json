@@ -4,10 +4,12 @@
   "lib": {
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
-      "@marxa/storage": "@marxa/storage"
+      "@marxa/storage": "@marxa/storage",
+      "@marxa/devkit": "@marxa/devkit"
     }
 },
 "allowedNonPeerDependencies": [
-  "@marxa/storage"
+  "@marxa/storage",
+  "@marxa/devkit"
 ]
 }

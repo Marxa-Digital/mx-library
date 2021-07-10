@@ -8,12 +8,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "sudo rm -rf \"dist/marxa/slider\" && ng build @marxa/slider --prod",
-    "link": "cd \"dist/marxa/slider\" && sudo npm link",
-    "link:lib": "sudo npm link dist/marxa/slider",
-    "publish:package": "cd \"dist/marxa/slider\" && sudo npm publish",
-    "export:styles": "sudo cpx \"projects/marxa/slider/src/lib/styles/**/*\" \"dist/marxa/slider/styles\" ",
-    "publish": "npm run build:lib && npm run link && npm run link:lib && npm run export:styles && npm run publish:package && npm i -s @marxa/slider@latest"
+    "build:lib": "ng build @marxa/index --prod",
+    "link": "cd \"dist/marxa/index\" && npm link",
+    "link:lib": "npm link dist/marxa/index",
+    "publish:package": "cd \"dist/marxa/index\" && npm publish",
+    "export:styles": "cpx \"projects/marxa/index/src/lib/styles/**/*\" \"dist/marxa/index/styles\" ",
+    "publish": "npm run build:lib && npm run link && npm run link:lib && npm run export:styles && npm run publish:package && npm i -s @marxa/index@latest"
   },
   "private": true,
   "dependencies": {
@@ -31,6 +31,7 @@
     "@marxa/auth": "^0.0.4",
     "@marxa/crud-panel": "^0.0.4",
     "@marxa/devkit": "^0.0.14",
+    "@marxa/index": "^0.0.2",
     "@marxa/navbar": "^0.0.2",
     "@marxa/search": "^0.0.2",
     "@marxa/slider": "0.0.5",

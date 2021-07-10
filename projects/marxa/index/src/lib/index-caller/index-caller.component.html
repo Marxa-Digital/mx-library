@@ -1,11 +1,20 @@
-<div class="row" *ngIf="prodCant;" >
-    <div class="col s2">
-        <button mat-raised-button [color]="'primary'" (click)="_index.getPrevPage()" [disabled]="first<=1">Atrás</button>
+<ng-container *ngIf="!_index.mergeQuery; else merge">
+  <div class="row" >
+    <div class="col s4 m3 l2">
+      <button mat-raised-button [color]="colorBtn" (click)="_index.changePage('prev')" [disabled]="first<=1">{{prevBtn}}</button>
     </div>
-    <div class="col s8 center ltxt">
-        Mostrando del {{first}} al {{last}} de {{prodCant}}
+    <div class="col s4 m6 l10 center ltxt">
+      {{centerMessage.showing}} {{centerMessage.from}} {{first}} {{centerMessage.to}} {{last}}
     </div>
-    <div class="col s2">
-        <button mat-raised-button [color]="'primary'" (click)="_index.getNextPage()" [disabled]="last>=prodCant">Siguiente</button>
+    <div class="col s4 m3 l2 right" style="display: flex; justify-content: flex-end">
+      <button mat-raised-button [color]="colorBtn" (click)="_index.changePage('next')" [disabled]="noMore">{{nextBtn}}</button>
     </div>
-</div>
+  </div>
+</ng-container>
+<ng-template #merge >
+  <div class="row">
+    <div class="col s12">
+      <button mat-raised-button [color]="colorBtn" (click)="_index.changePage('next')" [disabled]="noMore">Carga más</button>
+    </div>
+  </div>
+</ng-template>

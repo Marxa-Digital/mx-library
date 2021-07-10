@@ -5,13 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyDPG5D5vDWpvdkBMabe6nPx3jM9bDlkOUA",
-    authDomain: "marxa-d.firebaseapp.com",
-    projectId: "marxa-d",
-    storageBucket: "marxa-d.appspot.com",
-    messagingSenderId: "211648663515",
-    appId: "1:211648663515:web:bb57a95657f0051a01a1fe",
-    measurementId: "G-FJSZWNYWBQ"
+    apiKey: "AIzaSyAWyEnMxrLrTd7zTniWGndQNft_hxCQ8HA",
+    authDomain: "tiendalasmotos.firebaseapp.com",
+    databaseURL: "https://tiendalasmotos.firebaseio.com",
+    projectId: "tiendalasmotos",
+    storageBucket: "tiendalasmotos.appspot.com",
+    messagingSenderId: "467812260261",
+    appId: "1:467812260261:web:557321ebd82e4b28d2304c",
+    measurementId: "G-CTBYB0REK6"
   }
 };
 

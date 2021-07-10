@@ -1,7 +1,13 @@
 <div class="container">
   <div class="row">
+   <mx-sort-options
+   [fields]="['id', 'referencia']"
+   ></mx-sort-options>
     <div class="col s12">
-      <ng-content></ng-content>
+      <p *ngFor="let moto of motos | async; index as i">
+         {{i+1}} {{moto.referencia}}
+      </p>
     </div>
   </div>
+  <mx-index-caller></mx-index-caller>
 </div>

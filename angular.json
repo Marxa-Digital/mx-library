@@ -36,7 +36,8 @@
             "scripts": []
           },
           "allowedCommonJsDependencies": [
-            "export-to-csv"
+            "export-to-csv",
+            "lodash"
           ],
           "configurations": {
             "production": {

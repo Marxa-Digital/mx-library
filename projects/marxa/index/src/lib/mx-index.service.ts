@@ -2,21 +2,20 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Subject } from 'rxjs';
 import { MatSelectChange } from '@angular/material/select';
+import { mxIndexAnchor, mxIndexEvent } from './mx-index.model';
+import firebase from 'firebase/app'
 
-interface ANCHOR {
-  page: number;
-  firstQuery: any;
-  lastQuery: any;
-}
+
 
 @Injectable({ providedIn: 'root' })
 export class MxIndex {
 
-  public indexEvent: EventEmitter<any> = new EventEmitter();
-  public queryData: Subject<any> = new Subject();
-  public orderData: Subject<any> = new Subject();
+  /** Emite el evento cuando se realiza un cambio de página. */
+  public indexEvent: EventEmitter<mxIndexEvent> = new EventEmitter();
+  /** Observable de la data obtenida por el index */
+  public queryData: Subject<any[]> = new Subject();
+  /** Notifica cuando el proceso de indexado inicia y termina */
   public loadingQuery: Subject<boolean> = new Subject();
-
   /** The collection to get the query indexed. Can be a only string or a path with even number of slashes. Ej. 'collection/document/collection' */
   public collection: string = '';
   /** The field in the collection docs to query and order*/
@@ -26,15 +25,19 @@ export class MxIndex {
   /** The criteria to compare the field */
   public criteria: string = '';
   /** The type of comparator if you use the static filter */
-  public compareType: '==' | 'array-contains' = '==';
+  public compareType: firebase.firestore.WhereFilterOp = '==';
+  /** Wheather the documents called from the collection will merge or not */
+  public mergeQuery: boolean = false
+  /** The query cant selected */
+  public queryCant: number = 0;
 
-  private collectionSize: number = 0;
-  private queryCant: number = 0;
+  private pageSize: number = 0;
+  private currentPage: number = 0;
   private pageContent: any[] = [];
 
   private first: number = 1;
   private last: number = 0;
-  private pageAnchors: ANCHOR[] = [];
+  private pageAnchors: mxIndexAnchor[] = [];
 
   constructor(private fs: AngularFirestore) {}
 
@@ -48,35 +51,43 @@ export class MxIndex {
   }
 
   /** The order to sort the content is defined by default as `asc`: ascendent. But if you need get inverse, you can define as `desc` */
-  setOrderSort(sortOrder: MatSelectChange) {
-    this.order = sortOrder.value;
+  setOrderSort(sortOrder: MatSelectChange | 'asc' | 'desc') {
+    this.order = typeof sortOrder === 'string' ? sortOrder : sortOrder.value;
+    this.initIndex(this.collection, this.field, this.queryCant, this.order, this.mergeQuery)
   }
 
   /** Activates the static filter */
   setCriteriaFilter(
     /** It is required to set some criteria in the filtered query */
-    criteria: MatSelectChange,
+    criteria: MatSelectChange | string,
     /** If needs init a new filter, this value is optional. By default gets the `field` defined in the init of the index service */
     field?: string,
     /** By default it will search by `==` to compare. If you need another compare kind, use `compareByField` function*/
-    compareType?: '==' | 'array-contains'
+    order?: 'asc' | 'desc'
   ) {
-    console.log(criteria.value);
-    if (!criteria || !criteria.value) {
+    if ( !criteria ) {
+      this.criteria = ''
       this.initIndex(this.collection, this.field, this.queryCant);
     } else {
       this.criteria = typeof criteria == 'string' ? criteria : criteria.value;
-      this.field = field ? field : this.field;
-      this.compareType = compareType ? compareType : '==';
-      this.filterDataByField();
+      this.field = field || this.field;
+      this.order = order || this.order
+      this.initIndex(this.collection, this.field, this.queryCant, this.order, this.mergeQuery)
     }
   }
 
+  /** Initializes the index from the collection and get first query cant selected. If not selected query cant, default will be 20 */
   async initIndex(
+    /** Collection to query */
     CollectionToSort: string,
+    /** Field to sort collection */
     FieldToSort: string,
+    /** Query cant of documents */
     queryCant: number,
-    order?: 'asc' | 'desc'
+    /** OPTIONAL. Order of collection */
+    order?: 'asc' | 'desc',
+    /** OPTIONAL. To merge the query calls */
+    merge?: boolean
   ) {
     this.loadingQuery.next(true);
     // Define docs to query
@@ -84,195 +95,116 @@ export class MxIndex {
     this.field = !this.field ? FieldToSort : this.field;
     this.queryCant = queryCant;
     this.first = 1;
-    this.last = this.first + (this.queryCant - 1);
     this.order = order || this.order
+    this.mergeQuery = merge || false
 
     // Get the collection size to index
-    var queryCollection = this.fs
-      .collection(this.collection)
-      .ref.orderBy(this.field, this.order);
-    this.collectionSize = (await queryCollection.get()).size;
-    console.log(this.collectionSize);
+    var queryCollection = !this.criteria
+      ? await this.fs
+          .collection(this.collection)
+          .ref.orderBy(this.field, this.order)
+      : await this.fs
+          .collection(this.collection).ref
+          .where(this.field, '>=', this.criteria)
+          .where(this.field, '<=', this.criteria+'~')
+          .orderBy(this.field, this.order)
 
-    this.last =
-      this.collectionSize < this.queryCant ? this.collectionSize : this.last;
-
-    this.queryCant =
-      this.collectionSize < this.queryCant
-        ? this.collectionSize
-        : this.queryCant < this.collectionSize
-        ? this.collectionSize
-        : 20;
-
-    // Define limit and get query
     var query = await queryCollection
       .limit(this.queryCant == 0 ? 20 : this.queryCant)
       .get();
 
+    this.pageSize = query.size;
+    this.last = this.pageSize < this.queryCant ? this.pageSize : this.queryCant;
+
     this.pageContent = [];
-    if (this.collectionSize > 0) {
+    if (this.pageSize > 0) {
       await query.forEach(async (doc) => {
         return this.pageContent.push(doc.data());
       });
 
+      this.last = this.pageSize
       this.indexEvent.next({
         firstIndex: this.first,
         lastIndex: this.last,
-        collectionSize: this.collectionSize,
+        pageSize: this.pageSize,
       });
-      // console.log( this.pageContent );
       this.queryData.next(this.pageContent);
 
-      // console.log( this.pageContent[ this.last - 1 ], this.last);
       // Define anchors
       this.pageAnchors.push({
-        page: this.first,
+        page: this.currentPage,
         firstQuery: this.pageContent[0][this.field],
         lastQuery:
-          this.collectionSize > this.queryCant
-            ? this.pageContent[this.queryCant - 1][this.field]
-            : this.pageContent[this.last - 1][this.field],
+          this.pageSize < this.queryCant
+          ? this.pageContent[this.last - 1][this.field]
+          : this.pageContent[this.queryCant - 1][this.field]
       });
     }
-
     this.queryData.next(this.pageContent);
-    this.loadingQuery.next(false);
+    this.loadingQuery.next( false );
+
   }
 
-  async filterDataByField() {
-    // Define docs to query
+
+  /** Permite cambiar de página en la consulta del index hacia el siguiente o el anterior */
+  async changePage(direction: 'next' | 'prev') {
     this.loadingQuery.next(true);
-    try {
-      this.pageContent = [];
-      this.pageAnchors = [];
-      this.first = 1;
-      this.last = this.first + (this.queryCant - 1);
+    var anchor: mxIndexAnchor = {firstQuery: '', lastQuery: '', page: this.currentPage}
+    var pageAnchor = this.pageAnchors.find((page) =>
+      page.page == ( direction === 'next' ? this.currentPage : this.currentPage-1)
+    )
+    if (pageAnchor) anchor = pageAnchor;
 
-      // Get the collection size to index
-      var queryCollection = this.fs
-        .collection(this.collection)
-        .ref.where(this.field, this.compareType, this.criteria);
-      // .orderBy( this.field, this.order )
-      this.collectionSize = (await queryCollection.get()).size;
-      this.last =
-        this.collectionSize < this.queryCant ? this.collectionSize : this.last;
-      this.queryCant =
-        this.collectionSize < this.queryCant
-          ? this.collectionSize
-          : this.queryCant < this.collectionSize
-          ? this.collectionSize
-          : 20;
 
-      // console.log(this.collectionSize, this.queryCant);
-      // Define limit and get query
-      var query = await queryCollection.limit(this.queryCant).get();
+    var queryCollection = !this.criteria
+      ? await this.fs
+          .collection(this.collection)
+          .ref.orderBy(this.field, this.order)
+      : await this.fs
+          .collection(this.collection).ref
+          .where(this.field, '>=', this.criteria)
+          .where(this.field, '<=', this.criteria+'~')
+          .orderBy(this.field, this.order)
 
+    let query = await (direction == 'next'
+      ? queryCollection.startAfter(anchor.lastQuery)
+      : queryCollection.startAt(anchor.firstQuery)
+      ).limit(this.queryCant).get()
+
+
+    if (query.size > 0) {
+
+      if (!this.mergeQuery) this.pageContent = []
       await query.forEach(async (doc) => {
         return this.pageContent.push(doc.data());
       });
+
+      this.pageSize = query.size
+      if (direction == 'next') {
+        this.first = this.first + this.queryCant
+        this.last = this.pageSize + (this.first - 1)
+        this.currentPage += 1
+      } else {
+        this.last = this.first - 1
+        this.first = this.first - this.queryCant;
+        this.currentPage -= 1
+      }
       this.indexEvent.emit({
         firstIndex: this.first,
         lastIndex: this.last,
-        collectionSize: this.collectionSize,
+        pageSize: this.pageSize,
       });
-
-      // console.log(this.pageContent);
-      this.queryData.next(this.pageContent);
 
       // Define anchors
       this.pageAnchors.push({
-        page: this.first,
+        page: this.currentPage,
         firstQuery: this.pageContent[0][this.field],
-        lastQuery: this.pageContent[this.last - 1][this.field],
+        lastQuery: this.pageContent[this.pageContent.length - 1][this.field],
       });
+
+      this.queryData.next(this.pageContent);
       this.loadingQuery.next(false);
-      return true;
-    } catch (error) {
-      console.error(error);
-      // this.alerta.sendMessageAlert('Ooops! Algo no salió bien')
-      this.loadingQuery.next(false);
-      return;
     }
-  }
 
-  async getNextPage() {
-    this.loadingQuery.next(true);
-    let pageAnchor = this.pageAnchors.find((page) => page.page == this.first);
-    let anchor: ANCHOR = { firstQuery: '', lastQuery: '', page: 0 };
-    if (pageAnchor) anchor = pageAnchor.lastQuery;
-    this.first = this.first + this.queryCant;
-    this.last = this.first + (this.queryCant - 1);
-    this.collectionSize < this.last
-      ? (this.last = this.first - 1 + (this.collectionSize % this.queryCant))
-      : (this.last = this.first + (this.queryCant - 1));
-
-    var queryCollection = !this.criteria
-      ? await this.fs
-          .collection(this.collection)
-          .ref.orderBy(this.field, this.order)
-      : await this.fs
-          .collection(this.collection)
-          .ref.orderBy(this.field, this.order)
-          .where(this.field, this.compareType, this.criteria);
-    let query = await queryCollection
-      .startAfter(anchor)
-      .limit(this.queryCant)
-      .get();
-
-    this.pageContent = [];
-    await query.forEach(async (doc) => {
-      return this.pageContent.push(doc.data());
-    });
-    this.indexEvent.emit({
-      firstIndex: this.first,
-      lastIndex: this.last,
-      collectionSize: this.collectionSize,
-    });
-    this.queryData.next(this.pageContent);
-    this.loadingQuery.next(false);
-    // Define anchors
-    this.pageAnchors.push({
-      page: this.first,
-      firstQuery: this.pageContent[0][this.field],
-      lastQuery: this.pageContent[this.pageContent.length - 1][this.field],
-    });
-  }
-
-  async getPrevPage() {
-    this.loadingQuery.next(true);
-    let prev = this.first - this.queryCant;
-    let pageAnchor = this.pageAnchors.find((page) => page.page == prev);
-    let anchor: ANCHOR = { firstQuery: '', lastQuery: '', page: 0 };
-    if (pageAnchor) anchor = pageAnchor.lastQuery;
-
-    this.first = this.first - this.queryCant;
-    this.last - this.first > this.queryCant
-      ? (this.last = this.last - (this.last % this.queryCant))
-      : (this.last = this.first + (this.queryCant - 1));
-
-    var queryCollection = !this.criteria
-      ? await this.fs
-          .collection(this.collection)
-          .ref.orderBy(this.field, this.order)
-      : await this.fs
-          .collection(this.collection)
-          .ref.orderBy(this.field, this.order)
-          .where(this.field, this.compareType, this.criteria);
-    let query = await queryCollection
-      .startAt(anchor)
-      .limit(this.queryCant)
-      .get();
-
-    this.pageContent = [];
-    await query.forEach(async (doc) => {
-      return this.pageContent.push(doc.data());
-    });
-    this.queryData.next(this.pageContent);
-    this.loadingQuery.next(false);
-    this.indexEvent.emit({
-      firstIndex: this.first,
-      lastIndex: this.last,
-      collectionSize: this.collectionSize,
-    });
   }
 }

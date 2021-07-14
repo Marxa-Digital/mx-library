@@ -91,8 +91,8 @@ export class MxIndex {
   ) {
     this.loadingQuery.next(true);
     // Define docs to query
-    this.collection = CollectionToSort;
-    this.field = !this.field ? FieldToSort : this.field;
+    this.collection = CollectionToSort || this.collection;
+    this.field =  FieldToSort || this.field;
     this.queryCant = queryCant;
     this.first = 1;
     this.order = order || this.order

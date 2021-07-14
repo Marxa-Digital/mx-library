@@ -8,12 +8,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "ng build @marxa/slider --prod",
-    "link": "cd \"dist/marxa/slider\" && npm link",
-    "link:lib": "npm link dist/marxa/slider",
-    "publish:package": "cd \"dist/marxa/slider\" && npm publish",
-    "export:styles": "cpx \"projects/marxa/slider/src/lib/styles/**/*\" \"dist/marxa/slider/styles\" ",
-    "publish": "npm run build:lib && npm run link && npm run link:lib && npm run export:styles && npm run publish:package && npm i -s @marxa/slider@latest"
+    "build:lib": "ng build @marxa/storage --prod",
+    "link": "cd \"dist/marxa/storage\" && npm link",
+    "link:lib": "npm link dist/marxa/storage",
+    "publish:package": "cd \"dist/marxa/storage\" && npm publish",
+    "export:styles": "cpx \"projects/marxa/storage/src/lib/styles/**/*\" \"dist/marxa/storage/styles\" ",
+    "publish": "npm run build:lib && npm run link && npm run link:lib && npm run export:styles && npm run publish:package && npm i -s @marxa/storage@latest"
   },
   "private": true,
   "dependencies": {
@@ -35,7 +35,7 @@
     "@marxa/navbar": "^0.0.2",
     "@marxa/search": "^0.0.2",
     "@marxa/slider": "^0.0.6",
-    "@marxa/storage": "^0.0.18",
+    "@marxa/storage": "^0.0.19",
     "export-to-csv": "^0.2.1",
     "firebase": "^7.0 || ^8.0",
     "lodash": "^4.17.21",

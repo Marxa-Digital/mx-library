@@ -32,7 +32,8 @@ export class MxIndexCallerComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
-    if (this.merge == true ) this._index.mergeQuery = this.merge
+    if ( this.merge == true ) this._index.mergeQuery = this.merge
+    this.eventSubscription =
     this._index.indexEvent.subscribe( (data:mxIndexEvent) => {
       this.first = data.firstIndex
       this.last = data.lastIndex

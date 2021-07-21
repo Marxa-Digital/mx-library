@@ -1,9 +1,16 @@
 {
   "name": "@marxa/devkit",
-  "version": "0.0.15",
+  "version": "1.0.0",
+  "schematics": "./schematics/collection.json",
   "peerDependencies": {
     "@angular/common": "^11.0.9",
     "@angular/core": "^11.0.9"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.schematics.json",
+    "copy:schemas": "cpx schematics/* ../../../dist/marxa/devkit/schematics",
+    "copy:files": "cpx schematics/*/files/**/* ../../../dist/marxa/devkit/schematics",
+    "postbuild": "npm run copy:schemas && npm run copy:files"
   },
   "dependencies": {
     "tslib": "^2.0.0"
@@ -15,5 +22,8 @@
   "author": {
     "name": "Jorge Guzman",
     "email": "jguzman@marxadigital.com"
+  },
+  "ng-add": {
+    "save": "dependencies"
   }
 }

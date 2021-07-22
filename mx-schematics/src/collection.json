@@ -16,21 +16,15 @@
     },
     "dialog": {
       "description": "Generate a dialog component in the project.",
-      "factory": "./dialog/index#dialog",
+      "factory": "./dialog",
       "schema": "./dialog/schema.json"
     },
 
     "component": {
       "aliases": [ "c" ],
-      "factory": "./on-destroy",
+      "factory": "./component",
       "description": "Create an Angular component with Init and Destroy hooks.",
-      "schema": "./on-destroy/schema.json"
-    },
-    "onDestroy": {
-      "aliases": [ "cd" ],
-      "factory": "./on-destroy",
-      "description": "Create an Angular component with Init and Destroy hooks.",
-      "schema": "./on-destroy/schema.json"
+      "schema": "./component/schema.json"
     }
   }
 }

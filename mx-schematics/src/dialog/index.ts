@@ -32,6 +32,7 @@ export function dialog(options: DialogSchema): Rule {
   return async ( tree: Tree ) => {
 
     // await setupOptions(tree, options);
+    options.flatName = options.name.slice( options.name.lastIndexOf( '/' ) + 1 )
 
     const host = createHost(tree);
     const { workspace } = await workspaces.readWorkspace( '/', host );
@@ -47,15 +48,17 @@ export function dialog(options: DialogSchema): Rule {
 
     const projectType = project.extensions.projectType === 'application' ? 'app' : 'lib';
 
-    if (options.path === undefined) {
-      options.path = `${project.sourceRoot}/${projectType}`;
+    if (!options.path) {
+      options.path = `${project.sourceRoot}/${projectType}/${options.name}`;
     }
 
+
+    console.log( options )
     const templateSource = apply(url('./files'), [
       applyTemplates({
         classify: strings.classify,
         dasherize: strings.dasherize,
-        name: options.name
+        name: options.flatName
       }),
       move(normalize(options.path as string))
     ] );

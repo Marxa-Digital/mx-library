@@ -1,7 +1,7 @@
 {
-  "name": "mx",
+  "name": "mx-schematics",
   "version": "0.0.0",
-  "description": "A blank schematics",
+  "description": "Schematics of mxLibrary",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && jasmine src/**/*_spec.js",

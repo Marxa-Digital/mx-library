@@ -7,4 +7,6 @@ export interface Dialog {
 
   // The name of the project.
   project?: string;
+
+  flatName?: string;
 }

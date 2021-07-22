@@ -1,0 +1,30 @@
+{
+  "name": "mx",
+  "version": "0.0.0",
+  "description": "A blank schematics",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && jasmine src/**/*_spec.js",
+    "copy:collection": "cpx src/collection.json ../dist/marxa/schematics/",
+    "copy:schemas": "cpx src/*/schema.json ../dist/marxa/schematics/",
+    "copy:files":"cpx src/*/files/**/* ../dist/marxa/schematics/",
+    "postbuild":"npm run copy:collection && npm run copy:schemas && npm run copy:files"
+  },
+  "keywords": [
+    "schematics"
+  ],
+  "author": "",
+  "license": "MIT",
+  "schematics": "./src/collection.json",
+  "dependencies": {
+    "@angular-devkit/core": "^12.1.2",
+    "@angular-devkit/schematics": "^12.1.2",
+    "typescript": "~4.3.2"
+  },
+  "devDependencies": {
+    "@schematics/angular": "^12.1.2",
+    "@types/jasmine": "~3.5.0",
+    "@types/node": "^12.11.1",
+    "jasmine": "^3.5.0"
+  }
+}

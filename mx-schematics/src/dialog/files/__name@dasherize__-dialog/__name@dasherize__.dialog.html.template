@@ -1,0 +1,4 @@
+<mat-dialog-content>
+  <p><%= dasherize(name) %> works!</p>
+</mat-dialog-content>
+

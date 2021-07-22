@@ -1,0 +1,36 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "mx-schematics": {
+      "description": "A blank schematic.",
+      "factory": "./mx-schematics/index#mxLibrary"
+    },
+    "ng-add": {
+      "factory": "./ng-add/index",
+      "description": "Add schematic"
+    },
+    "service": {
+      "description": "Generate a service in the project.",
+      "factory": "./service/index#service",
+      "schema": "./service/schema.json"
+    },
+    "dialog": {
+      "description": "Generate a dialog component in the project.",
+      "factory": "./dialog/index#dialog",
+      "schema": "./dialog/schema.json"
+    },
+
+    "component": {
+      "aliases": [ "c" ],
+      "factory": "./on-destroy",
+      "description": "Create an Angular component with Init and Destroy hooks.",
+      "schema": "./on-destroy/schema.json"
+    },
+    "onDestroy": {
+      "aliases": [ "cd" ],
+      "factory": "./on-destroy",
+      "description": "Create an Angular component with Init and Destroy hooks.",
+      "schema": "./on-destroy/schema.json"
+    }
+  }
+}

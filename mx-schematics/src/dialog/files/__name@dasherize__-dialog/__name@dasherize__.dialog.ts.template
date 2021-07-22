@@ -1,0 +1,18 @@
+import { Component, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+@Component({
+  templateUrl: './<%= dasherize(name) %>.dialog.html',
+  styleUrls: ['./<%= dasherize(name) %>.dialog.scss]
+})
+export class <%= classify(name) %>Dialog implements OnInit {
+
+  constructor(
+    public dialog: MatDialogRef<<%= classify(name) %>Dialog>,
+    @Inject( MAT_DIALOG_DATA ) public data: any
+  ) { }
+
+  ngOnInit(): void {
+  }
+
+}

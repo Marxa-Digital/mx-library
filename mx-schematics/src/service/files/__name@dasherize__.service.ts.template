@@ -1,0 +1,22 @@
+import { Injectable } from '@angular/core';
+import { MxAlert, MxLoading } from '@marxa/devkit';
+import { AngularFirestore, AngularFirestoreCollection, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import firebase from 'firebase/app'
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class <%= classify(name) %>Service {
+  constructor(
+    private _afs: AngularFirestore,
+    private _alert: MxAlert,
+    private _loading: MxLoading
+  ) {}
+
+  set(){}
+
+  update(){}
+
+  delete(){}
+}

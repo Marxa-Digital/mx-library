@@ -1,6 +1,5 @@
 import {
   apply,
-  branchAndMerge,
   chain,
   MergeStrategy,
   mergeWith,
@@ -48,11 +47,7 @@ export function install(_options: any): Rule {
       move(movePath)
     ]);
 
-    return chain( [
-      branchAndMerge( chain( [
-        mergeWith( templateSource, MergeStrategy.Overwrite )
-      ] ), MergeStrategy.AllowOverwriteConflict ),
-    ] )
+    return chain([mergeWith(templateSource, MergeStrategy.Overwrite)]);
 
   };
 }

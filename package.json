@@ -13,7 +13,8 @@
     "link:lib": "npm link dist/marxa/devkit",
     "publish:package": "cd \"dist/marxa/devkit\" && npm publish",
     "export:styles": "cpx \"projects/marxa/devkit/src/lib/styles/**/*\" \"dist/marxa/devkit/styles\" ",
-    "publish": "npm run build:lib && npm run link && npm run link:lib && npm run export:styles && npm run publish:package && npm i -s @marxa/devkit@latest"
+    "publish": "npm run build:lib && npm run link && npm run link:lib && npm run export:styles && npm run publish:package && npm i -s @marxa/devkit@latest",
+    "publish:ng-add": "npm run build:lib && npm run link &&  npm run export:styles && npm run build && cd ../../../ && npm run link:lib && npm run publish:package && npm i -s @marxa/devkit@latest"
   },
   "private": true,
   "dependencies": {

@@ -32,7 +32,7 @@
     "@angular/router": "~11.0.5",
     "@marxa/auth": "^0.0.4",
     "@marxa/crud-panel": "^0.0.4",
-    "@marxa/devkit": "^1.1.2",
+    "@marxa/devkit": "^1.1.4",
     "@marxa/index": "^0.0.4",
     "@marxa/navbar": "^0.0.2",
     "@marxa/search": "^0.0.2",

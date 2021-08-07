@@ -15,7 +15,7 @@
     "publish:package": "cd \"dist/marxa/devkit\" && npm publish",
     "export:styles": "cpx \"projects/marxa/devkit/src/lib/styles/**/*\" \"dist/marxa/devkit/styles\" ",
     "publish": "npm run build:lib && npm run link && npm run link:lib && npm run export:styles && npm run publish:package && npm i -s @marxa/devkit@latest",
-    "publish:ng-add": "npm run build:lib && npm run link &&  npm run export:styles && npm run build:schematics  && npm run link:lib && npm run publish:package && npm i -s @marxa/devkit@latest"
+    "publish:ng": "npm run build:lib && npm run link &&  npm run export:styles && npm run build:schematics  && npm run link:lib && npm run publish:package && npm i -s @marxa/devkit@latest"
   },
   "private": true,
   "dependencies": {
@@ -32,7 +32,7 @@
     "@angular/router": "~11.0.5",
     "@marxa/auth": "^0.0.4",
     "@marxa/crud-panel": "^0.0.4",
-    "@marxa/devkit": "^1.1.4",
+    "@marxa/devkit": "^1.1.8",
     "@marxa/index": "^0.0.4",
     "@marxa/navbar": "^0.0.2",
     "@marxa/search": "^0.0.2",

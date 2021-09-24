@@ -12,12 +12,14 @@ import { MarxaModule } from './shared/marxa.module';
 import { MaterialModule } from './shared/material.module';
 import { TestComponent } from './test/test.component';
 import { DatePipe } from '@angular/common';
+import { StorageComponent } from './test/storage/storage.component';
 // import { MxDevkitModule } from './mx-devkit/marxa-devkit.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent
+    TestComponent,
+    StorageComponent
   ],
   imports: [
     BrowserModule,

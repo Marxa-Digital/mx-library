@@ -5,6 +5,7 @@
 // ROOT
 export * from './lib/marxa-devkit.service';
 export * from './lib/marxa-devkit.module';
+export * from './lib/main.model';
 
 // ALERT
 export * from './lib/alert/alert.module'
@@ -13,6 +14,7 @@ export * from './lib/alert/alerts.model'
 
 // CACHE
 export * from './lib/cache/mx-cache.service';
+export * from './lib/cache/cache.module';
 
 // COLOR
 export * from './lib/color/mx-colors.module';

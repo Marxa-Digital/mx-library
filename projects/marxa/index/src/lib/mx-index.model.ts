@@ -15,3 +15,12 @@ export interface mxIndexCenterMessage {
   from: string,
   to: string
 }
+
+export interface mxSortCriteria {
+  collection: string;
+  field: string;
+  order: 'asc' | 'desc';
+  criteria: any;
+  queryCant: number;
+  mergeQuery: boolean;
+}

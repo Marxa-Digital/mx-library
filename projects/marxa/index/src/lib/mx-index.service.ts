@@ -2,7 +2,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Subject } from 'rxjs';
 import { MatSelectChange } from '@angular/material/select';
-import { mxIndexAnchor, mxIndexEvent } from './mx-index.model';
+import { mxIndexAnchor, mxIndexEvent, mxSortCriteria } from './mx-index.model';
 import firebase from 'firebase/app'
 
 
@@ -70,10 +70,12 @@ export class MxIndex {
       this.initIndex(this.collection, this.field, this.queryCant);
     } else {
       this.criteria = typeof criteria == 'string' ? criteria : criteria.value;
-      this.field = field || this.field;
+      this.field = field === undefined || field === null || field === '' ? this.field : field;
       this.order = order || this.order
+
       this.initIndex(this.collection, this.field, this.queryCant, this.order, this.mergeQuery)
     }
+    return <mxSortCriteria> { collection: this.collection, field: this.field, queryCant: this.queryCant, order: this.order, mergeQuery: this.mergeQuery}
   }
 
   /** Initializes the index from the collection and get first query cant selected. If not selected query cant, default will be 20 */
@@ -89,11 +91,14 @@ export class MxIndex {
     /** OPTIONAL. To merge the query calls */
     merge?: boolean
   ) {
+
+    // console.log( 'initIndex', CollectionToSort, FieldToSort, queryCant, order, merge )
+
     this.loadingQuery.next(true);
     // Define docs to query
     this.collection = CollectionToSort || this.collection;
     this.field =  FieldToSort || this.field;
-    this.queryCant = queryCant;
+    this.queryCant = queryCant || 20;
     this.first = 1;
     this.order = order || this.order
     this.mergeQuery = merge || false
@@ -131,6 +136,8 @@ export class MxIndex {
       this.queryData.next(this.pageContent);
 
       // Define anchors
+      // console.log( this.pageContent, this.queryCant, this.pageSize )
+
       this.pageAnchors.push({
         page: this.currentPage,
         firstQuery: this.pageContent[0][this.field],

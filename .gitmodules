@@ -19,9 +19,3 @@
 [submodule "projects/marxa/auth/src/lib"]
 	path = projects/marxa/auth/src/lib
 	url = https://github.com/jgu7man/mx-auth.git
-[submodule "projects/marxa/crud-panel/src/lib"]
-	path = projects/marxa/crud-panel/src/lib
-	url = https://github.com/jgu7man/mx-crud-panel
-[submodule "projects/marxa/index/src/lib"]
-	path = projects/marxa/index/src/lib
-	url = https://github.com/jgu7man/mx-index

@@ -10,9 +10,6 @@
 [submodule "projects/marxa/navbar/src/lib"]
 	path = projects/marxa/navbar/src/lib
 	url = https://github.com/jgu7man/mx-navbar
-[submodule "projects/marxa/index/src/lib"]
-	path = projects/marxa/index/src/lib
-	url = https://github.com/jgu7man/mx-index
 [submodule "projects/marxa/slider/src/lib"]
 	path = projects/marxa/slider/src/lib
 	url = https://github.com/jgu7man/mx-slider
@@ -25,3 +22,6 @@
 [submodule "projects/marxa/crud-panel/src/lib"]
 	path = projects/marxa/crud-panel/src/lib
 	url = https://github.com/jgu7man/mx-crud-panel
+[submodule "projects/marxa/index/src/lib"]
+	path = projects/marxa/index/src/lib
+	url = https://github.com/jgu7man/mx-index

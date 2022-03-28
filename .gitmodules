@@ -19,3 +19,6 @@
 [submodule "projects/marxa/auth/src/lib"]
 	path = projects/marxa/auth/src/lib
 	url = https://github.com/jgu7man/mx-auth.git
+[submodule "projects/marxa/index"]
+	path = projects/marxa/index
+	url = https://github.com/jgu7man/mx-index

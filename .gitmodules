@@ -22,3 +22,6 @@
 [submodule "projects/marxa/index"]
 	path = projects/marxa/index
 	url = https://github.com/jgu7man/mx-index
+[submodule "projects/marxa/crud-panel"]
+	path = projects/marxa/crud-panel
+	url = https://github.com/jgu7man/mx-crud-panel

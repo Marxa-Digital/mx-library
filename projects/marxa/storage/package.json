@@ -7,7 +7,9 @@
   },
   "dependencies": {
     "export-to-csv": "^0.2.1",
-    "ngx-dropzone": "^3.0.0",
+    "ngx- dropzone": "^3.0.0",
+    "sweetalert2": "^11.4.8",
+    "@marxa/devkit": "1.2.1",
     "tslib": "^2.0.0"
   },
   "repository": {

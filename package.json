@@ -33,7 +33,7 @@
     "@marxa/auth": "0.0.8",
     "@marxa/crud-panel": "^0.0.4",
     "@marxa/devkit": "^1.2.1",
-    "@marxa/index": "0.0.9",
+    "@marxa/index": "^0.0.10",
     "@marxa/navbar": "^0.0.2",
     "@marxa/search": "^0.0.2",
     "@marxa/slider": "^0.0.6",
@@ -43,6 +43,7 @@
     "lodash": "^4.17.21",
     "ngx-dropzone": "^3.0.0",
     "rxjs": "~6.6.0",
+    "sweetalert2": "^11.4.19",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },

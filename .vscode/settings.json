@@ -1,6 +1,7 @@
 {
   "workbench.colorTheme": "Bearded Theme Arc Blueberry",
   "files.exclude": {
-    "**/.git": false
-  }
+    "**/.git": true
+  },
+  "workspace.isHidden": true
 }

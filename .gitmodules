@@ -25,3 +25,6 @@
 [submodule "projects/marxa/storage"]
 	path = projects/marxa/storage
 	url = https://github.com/jgu7man/mx-storage
+[submodule "projects/marxa/devkit"]
+	path = projects/marxa/devkit
+	url = https://github.com/Marxa-Digital/mx-devkit

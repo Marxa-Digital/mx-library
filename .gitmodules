@@ -1,7 +1,6 @@
 # [submodule "projects/marxa/storage/src/lib"]
 # 	path = projects/marxa/storage/src/lib
 # 	url = https://github.com/jgu7man/mx-storage
-
 [submodule "projects/marxa/index"]
 	path = projects/marxa/index
 	url = https://github.com/jgu7man/mx-index

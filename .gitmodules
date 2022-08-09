@@ -1,6 +1,21 @@
 # [submodule "projects/marxa/storage/src/lib"]
 # 	path = projects/marxa/storage/src/lib
 # 	url = https://github.com/jgu7man/mx-storage
+# [submodule "projects/marxa/search/src/lib"]
+# 	path = projects/marxa/search/src/lib
+# 	url = https://github.com/jgu7man/mx-search
+# [submodule "projects/marxa/navbar/src/lib"]
+# 	path = projects/marxa/navbar/src/lib
+# 	url = https://github.com/jgu7man/mx-navbar
+# [submodule "projects/marxa/slider/src/lib"]
+# 	path = projects/marxa/slider/src/lib
+# 	url = https://github.com/jgu7man/mx-slider
+# [submodule "projects/marxa/social-share/src/lib"]
+# 	path = projects/marxa/social-share/src/lib
+# 	url = https://github.com/jgu7man/mx-social-share.git
+# [submodule "projects/marxa/auth/src/lib"]
+# 	path = projects/marxa/auth/src/lib
+# 	url = https://github.com/jgu7man/mx-auth.git
 [submodule "projects/marxa/index"]
 	path = projects/marxa/index
 	url = https://github.com/jgu7man/mx-index

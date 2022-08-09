@@ -28,3 +28,18 @@
 [submodule "projects/marxa/devkit"]
 	path = projects/marxa/devkit
 	url = https://github.com/Marxa-Digital/mx-devkit
+[submodule "projects/marxa/auth"]
+	path = projects/marxa/auth
+	url = https://github.com/jgu7man/mx-auth.git
+[submodule "projects/marxa/social-share"]
+	path = projects/marxa/social-share
+	url = https://github.com/jgu7man/mx-social-share.git
+[submodule "projects/marxa/slider"]
+	path = projects/marxa/slider
+	url = https://github.com/jgu7man/mx-slider.git
+[submodule "projects/marxa/navbar"]
+	path = projects/marxa/navbar
+	url = https://github.com/jgu7man/mx-navbar.git
+[submodule "projects/marxa/search"]
+	path = projects/marxa/search
+	url = https://github.com/jgu7man/mx-search.git

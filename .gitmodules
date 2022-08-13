@@ -1,45 +1,30 @@
 # [submodule "projects/marxa/storage/src/lib"]
 # 	path = projects/marxa/storage/src/lib
 # 	url = https://github.com/jgu7man/mx-storage
-# [submodule "projects/marxa/search/src/lib"]
-# 	path = projects/marxa/search/src/lib
-# 	url = https://github.com/jgu7man/mx-search
-# [submodule "projects/marxa/navbar/src/lib"]
-# 	path = projects/marxa/navbar/src/lib
-# 	url = https://github.com/jgu7man/mx-navbar
-# [submodule "projects/marxa/slider/src/lib"]
-# 	path = projects/marxa/slider/src/lib
-# 	url = https://github.com/jgu7man/mx-slider
-# [submodule "projects/marxa/social-share/src/lib"]
-# 	path = projects/marxa/social-share/src/lib
-# 	url = https://github.com/jgu7man/mx-social-share.git
-# [submodule "projects/marxa/auth/src/lib"]
-# 	path = projects/marxa/auth/src/lib
-# 	url = https://github.com/jgu7man/mx-auth.git
 [submodule "projects/marxa/index"]
 	path = projects/marxa/index
-	url = https://github.com/jgu7man/mx-index
+	url = https://github.com/Marxa-Digital/mx-index
 [submodule "projects/marxa/crud-panel"]
 	path = projects/marxa/crud-panel
-	url = https://github.com/jgu7man/mx-crud-panel
+	url = https://github.com/Marxa-Digital/mx-crud-panel
 [submodule "projects/marxa/storage"]
 	path = projects/marxa/storage
-	url = https://github.com/jgu7man/mx-storage
+	url = https://github.com/Marxa-Digital/mx-storage
 [submodule "projects/marxa/devkit"]
 	path = projects/marxa/devkit
-	url = https://github.com/Marxa-Digital/mx-devkit
+	url = https://github.com/Marxa-Digital/gital/mx-devkit
 [submodule "projects/marxa/auth"]
 	path = projects/marxa/auth
-	url = https://github.com/jgu7man/mx-auth.git
+	url = https://github.com/Marxa-Digital/mx-auth.git
 [submodule "projects/marxa/social-share"]
 	path = projects/marxa/social-share
-	url = https://github.com/jgu7man/mx-social-share.git
+	url = https://github.com/Marxa-Digital/mx-social-share.git
 [submodule "projects/marxa/slider"]
 	path = projects/marxa/slider
-	url = https://github.com/jgu7man/mx-slider.git
+	url = https://github.com/Marxa-Digital/mx-slider.git
 [submodule "projects/marxa/navbar"]
 	path = projects/marxa/navbar
-	url = https://github.com/jgu7man/mx-navbar.git
+	url = https://github.com/Marxa-Digital/mx-navbar.git
 [submodule "projects/marxa/search"]
 	path = projects/marxa/search
-	url = https://github.com/jgu7man/mx-search.git
+	url = https://github.com/Marxa-Digital/mx-search.git

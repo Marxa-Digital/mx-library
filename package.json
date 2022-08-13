@@ -15,7 +15,8 @@
     "publish:package": "cd \"dist/marxa/index\" && npm publish",
     "export:styles": "cpx \"projects/marxa/index/src/lib/styles/**/*\" \"dist/marxa/index/styles\" ",
     "publish": "npm run build:lib && npm run link && npm run link:lib && npm run export:styles && npm run publish:package && npm i -s @marxa/index@latest",
-    "publish:ng": "npm run build:lib && npm run link &&  npm run export:styles && npm run build:schematics  && npm run link:lib && npm run publish:package && npm i -s @marxa/index@latest"
+    "publish:ng": "npm run build:lib && npm run link &&  npm run export:styles && npm run build:schematics  && npm run link:lib && npm run publish:package && npm i -s @marxa/index@latest",
+    "git:branch:check":"git submodule foreach --recursive git checkout ."
   },
   "private": true,
   "dependencies": {

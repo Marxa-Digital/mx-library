@@ -30,3 +30,6 @@
 	path = projects/marxa/social-share
 	url = https://github.com/Marxa-Digital/mx-social-share.git
   branch = develop
+[submodule "projects/marxa/storage"]
+	path = projects/marxa/storage
+	url = https://github.com/Marxa-Digital/mx-storage

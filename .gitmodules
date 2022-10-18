@@ -34,3 +34,6 @@
 	path = projects/marxa/storage
 	url = https://github.com/Marxa-Digital/mx-storage
 
+[submodule "projects/marxa/carrier"]
+	path = projects/marxa/carrier
+	url = https://github.com/Marxa-Digital/mx-carrier

@@ -1,12 +1,12 @@
 {
   "name": "@marxa/sidenav",
-  "version": "0.0.1",
+  "version": "12.2209.2",
   "peerDependencies": {
     "@angular/common": "^11.0.9",
-    "@angular/core": "^11.0.9"
+    "@angular/core": "^11.0.9",
+    "@marxa/devkit": "12.2209.3"
   },
   "dependencies": {
-    "@marxa/devkit": "^0.0.9",
     "tslib": "^2.0.0"
   }
 }

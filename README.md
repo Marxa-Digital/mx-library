@@ -1,14 +1,42 @@
-# MarxaDevs
-
+# Marxa Library
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+
+## Development
+
+1. Clone the repository
+```bash
+git clone https://github.com/Marxa-Digital/mx-library
+```
+2. Navigate to the folder where the library is located
+```bash
+cd  mx-library
+```
+3. Import the submodules
+```bash
+git submodule update --init --recursive --remote
+git submodule foreach --recursive 'git checkout develop'
+```
+4. Log in https://marxa.jfrog.io/ and login. In the account menu navigate to **Set me up**. And remain the configurations snippet and Copy it.
+5. In your PC in a terminal navigate to `~/.npmrc` and paste the code of the instructions adding the prefix `@marxa:` in every artifactory regist. Example:
+```bash
+_auth = <PASSWORD> (converted to base 64)
+email = youremail@email.com
+always-auth = true
+@marxa:registry = https://marxa.jfrog.io/artifactory/api/npm/marxa-npm/
+@marxa:registry = https://marxa.jfrog.io/artifactory/api/npm/mx-library-npm/
+```
+6. Import the dependencies
+```bash
+npm i
+```
+
+
+## Publish packages
+
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
@@ -16,12 +44,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
 
 ## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

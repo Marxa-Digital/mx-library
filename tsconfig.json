@@ -28,6 +28,10 @@
         "dist/marxa/auth/marxa-auth",
         "dist/marxa/auth"
       ],
+      "@marxa/form-constructor": [
+        "dist/marxa/form-constructor/marxa-form-constructor",
+        "dist/marxa/form-constructor"
+      ],
       "@marxa/index": [
         "dist/marxa/index/marxa-index",
         "dist/marxa/index"

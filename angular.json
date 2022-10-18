@@ -214,6 +214,77 @@
         }
       }
     },
+    "@marxa/carrier": {
+      "projectType": "library",
+      "root": "projects/marxa/carrier",
+      "sourceRoot": "projects/marxa/carrier/src",
+      "prefix": "mx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/marxa/carrier/tsconfig.lib.json",
+            "project": "projects/marxa/carrier/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/marxa/carrier/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/marxa/carrier/src/test.ts",
+            "tsConfig": "projects/marxa/carrier/tsconfig.spec.json",
+            "karmaConfig": "projects/marxa/carrier/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/marxa/carrier/tsconfig.lib.json",
+              "projects/marxa/carrier/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@marxa/form-constructor": {
+      "projectType": "library",
+      "root": "projects/marxa/form-constructor",
+      "sourceRoot": "projects/marxa/form-constructor/src",
+      "prefix": "mx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/marxa/form-constructor/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/marxa/form-constructor/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/marxa/form-constructor/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/marxa/form-constructor/src/test.ts",
+            "tsConfig": "projects/marxa/form-constructor/tsconfig.spec.json",
+            "karmaConfig": "projects/marxa/form-constructor/karma.conf.js"
+          }
+        }
+      }
+    },
     "@marxa/index": {
       "projectType": "library",
       "root": "projects/marxa/index",

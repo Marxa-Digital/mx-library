@@ -2,6 +2,12 @@
   "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../../dist/marxa/sidenav",
   "lib": {
-    "entryFile": "src/public-api.ts"
-  }
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "@marxa/devkit": "@marxa/devkit"
+    }
+  },
+  "allowedNonPeerDependencies": [
+    "@marxa/devkit"
+  ]
 }

@@ -1,7 +1,5 @@
 {
   "workbench.colorTheme": "Bearded Theme Black & Ruby",
-  "files.exclude": {
-    "**/.git": true
-  },
+  "files.exclude": {},
   "workspace.isHidden": true
 }

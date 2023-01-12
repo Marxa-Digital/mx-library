@@ -14,22 +14,6 @@
 	path = projects/marxa/index
 	url = https://github.com/Marxa-Digital/mx-index
   branch = develop
-[submodule "projects/marxa/navbar"]
-	path = projects/marxa/navbar
-	url = https://github.com/Marxa-Digital/mx-navbar.git
-  branch = develop
-[submodule "projects/marxa/search"]
-	path = projects/marxa/search
-	url = https://github.com/Marxa-Digital/mx-search.git
-  branch = develop
-[submodule "projects/marxa/slider"]
-	path = projects/marxa/slider
-	url = https://github.com/Marxa-Digital/mx-slider.git
-  branch = develop
-[submodule "projects/marxa/social-share"]
-	path = projects/marxa/social-share
-	url = https://github.com/Marxa-Digital/mx-social-share.git
-  branch = develop
 [submodule "projects/marxa/storage"]
 	path = projects/marxa/storage
 	url = https://github.com/Marxa-Digital/mx-storage

@@ -33,7 +33,12 @@
 [submodule "projects/marxa/storage"]
 	path = projects/marxa/storage
 	url = https://github.com/Marxa-Digital/mx-storage
-
+  branch = develop
 [submodule "projects/marxa/carrier"]
 	path = projects/marxa/carrier
 	url = https://github.com/Marxa-Digital/mx-carrier
+  branch = develop
+[submodule "projects/marxa/form-constructor"]
+	path = projects/marxa/form-constructor
+	url = https://github.com/Marxa-Digital/form-constructor-beta
+  branch = develop

@@ -20,13 +20,29 @@
       "dom"
     ],
     "paths": {
-      "@marxa/devkit": [
-        "dist/marxa/devkit/marxa-devkit",
-        "dist/marxa/devkit"
+      "@marxa/advance-fields": [
+        "dist/marxa/advance-fields/marxa-advance-fields",
+        "dist/marxa/advance-fields"
       ],
       "@marxa/auth": [
         "dist/marxa/auth/marxa-auth",
         "dist/marxa/auth"
+      ],
+      "@marxa/carrier": [
+        "dist/marxa/carrier/marxa-carrier",
+        "dist/marxa/carrier"
+      ],
+      "@marxa/crud-panel": [
+        "dist/marxa/crud-panel/marxa-crud-panel",
+        "dist/marxa/crud-panel"
+      ],
+      "@marxa/devkit": [
+        "dist/marxa/devkit/marxa-devkit",
+        "dist/marxa/devkit"
+      ],
+      "@marxa/fire-notifications": [
+        "dist/marxa/fire-notifications/marxa-fire-notifications",
+        "dist/marxa/fire-notifications"
       ],
       "@marxa/form-constructor": [
         "dist/marxa/form-constructor/marxa-form-constructor",
@@ -44,10 +60,6 @@
         "dist/marxa/storage/marxa-storage",
         "dist/marxa/storage"
       ],
-      "@marxa/crud-panel": [
-        "dist/marxa/crud-panel/marxa-crud-panel",
-        "dist/marxa/crud-panel"
-      ]
     }
   },
   "angularCompilerOptions": {

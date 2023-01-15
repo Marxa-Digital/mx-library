@@ -525,78 +525,38 @@
         }
       }
     },
-    "@marxa/advance-fields": {
+    "@marxa/mail": {
       "projectType": "library",
-      "root": "projects/marxa/advance-fields",
-      "sourceRoot": "projects/marxa/advance-fields/src",
+      "root": "projects/marxa/mail",
+      "sourceRoot": "projects/marxa/mail/src",
       "prefix": "mx",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/marxa/advance-fields/tsconfig.lib.json",
-            "project": "projects/marxa/advance-fields/ng-package.json"
+            "tsConfig": "projects/marxa/mail/tsconfig.lib.json",
+            "project": "projects/marxa/mail/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/marxa/advance-fields/tsconfig.lib.prod.json"
+              "tsConfig": "projects/marxa/mail/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/marxa/advance-fields/src/test.ts",
-            "tsConfig": "projects/marxa/advance-fields/tsconfig.spec.json",
-            "karmaConfig": "projects/marxa/advance-fields/karma.conf.js"
+            "main": "projects/marxa/mail/src/test.ts",
+            "tsConfig": "projects/marxa/mail/tsconfig.spec.json",
+            "karmaConfig": "projects/marxa/mail/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/marxa/advance-fields/tsconfig.lib.json",
-              "projects/marxa/advance-fields/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "@marxa/fire-notifications": {
-      "projectType": "library",
-      "root": "projects/marxa/fire-notifications",
-      "sourceRoot": "projects/marxa/fire-notifications/src",
-      "prefix": "mx",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/marxa/fire-notifications/tsconfig.lib.json",
-            "project": "projects/marxa/fire-notifications/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/marxa/fire-notifications/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/marxa/fire-notifications/src/test.ts",
-            "tsConfig": "projects/marxa/fire-notifications/tsconfig.spec.json",
-            "karmaConfig": "projects/marxa/fire-notifications/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/marxa/fire-notifications/tsconfig.lib.json",
-              "projects/marxa/fire-notifications/tsconfig.spec.json"
+              "projects/marxa/mail/tsconfig.lib.json",
+              "projects/marxa/mail/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

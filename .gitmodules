@@ -26,3 +26,7 @@
 	path = projects/marxa/form-constructor
 	url = https://github.com/Marxa-Digital/form-constructor-beta
   branch = develop
+[submodule "projects/marxa/mail"]
+	path = projects/marxa/mail
+	url = https://github.com/Marxa-Digital/mx-mail
+	branch = develop

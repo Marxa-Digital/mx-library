@@ -32,7 +32,22 @@ npm i
 
 
 ## Publish packages
+### Globally
+1. Install globally [nps library](https://www.npmjs.com/package/nps) 
+    ```bash
+    npm i -g nps
+    ```
+ 
+2. Run the command setting the package desired where <libname>
+    ```bash
+      LIB=<libname> nps lib.publish
+    ```
 
+### Without global configuration
+1. Run the command setting the package desired where <libname>
+    ```bash
+      LIB=<libname> npm run nps lib.publish
+    ```
 
 ## Development server
 

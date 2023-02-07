@@ -1,0 +1,13 @@
+#accept-pdp {
+	::ng-deep {
+		.mat-checkbox-layout {
+			white-space: break-spaces;
+		}
+	}
+	color: #676767;
+
+	a {
+		color: #d92231;
+		text-decoration: underline;
+	}
+}

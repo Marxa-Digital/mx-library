@@ -1,19 +1,28 @@
 @import '~@angular/material/theming';
-@import '/projects/marxa/devkit/src/lib/styles/all.scss';
+@import '~@marxa/devkit/styles/stylesheets/all.scss';
 @include mat-core();
 
 $marxa-devs-primary: mat-palette($mat-indigo);
 $marxa-devs-accent: mat-palette($mat-pink, A200, A100, A400);
 $marxa-devs-warn: mat-palette($mat-red);
-$marxa-devs-theme: mat-light-theme((
-  color: (
-    primary: $marxa-devs-primary,
-    accent: $marxa-devs-accent,
-    warn: $marxa-devs-warn,
+$marxa-devs-theme: mat-light-theme(
+  (
+    color: (
+      primary: $marxa-devs-primary,
+      accent: $marxa-devs-accent,
+      warn: $marxa-devs-warn
+    )
   )
-));
+);
 
 @include angular-material-theme($marxa-devs-theme);
+@include devkit-material-theme($marxa-devs-theme);
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

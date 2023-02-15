@@ -8,6 +8,7 @@ const routes: Routes = [
     { path: 'storage', component: StorageComponent
    },
   ] },
+  { path: 'devkit', loadChildren: () => import('./devkit/devkit.module').then(m => m.DevkitModule) },
 ];
 
 @NgModule({

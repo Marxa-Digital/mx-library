@@ -60,6 +60,10 @@
         "dist/marxa/storage/marxa-storage",
         "dist/marxa/storage"
       ],
+      "@marxa/forms": [
+        "dist/marxa/forms/marxa-forms",
+        "dist/marxa/forms"
+      ]
     }
   },
   "angularCompilerOptions": {

@@ -524,6 +524,46 @@
           }
         }
       }
+    },
+    "@marxa/forms": {
+      "projectType": "library",
+      "root": "projects/marxa/forms",
+      "sourceRoot": "projects/marxa/forms/src",
+      "prefix": "mx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/marxa/forms/tsconfig.lib.json",
+            "project": "projects/marxa/forms/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/marxa/forms/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/marxa/forms/src/test.ts",
+            "tsConfig": "projects/marxa/forms/tsconfig.spec.json",
+            "karmaConfig": "projects/marxa/forms/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/marxa/forms/tsconfig.lib.json",
+              "projects/marxa/forms/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "marxa-devs",

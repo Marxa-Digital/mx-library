@@ -9,6 +9,7 @@ const routes: Routes = [
    },
   ] },
   { path: 'devkit', loadChildren: () => import('./devkit/devkit.module').then(m => m.DevkitModule) },
+  { path: 'forms', loadChildren: () => import('./forms/forms.module').then(m => m.FormsModule) },
 ];
 
 @NgModule({

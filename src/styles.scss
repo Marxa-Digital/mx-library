@@ -1,5 +1,5 @@
 @import '~@angular/material/theming';
-@import '~@marxa/devkit/styles/stylesheets/all.scss';
+@import '~@marxa/devkit/src/lib/styles/stylesheets/all.scss';
 @include mat-core();
 
 $marxa-devs-primary: mat-palette($mat-indigo);

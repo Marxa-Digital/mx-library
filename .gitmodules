@@ -30,3 +30,6 @@
 	path = projects/marxa/mail
 	url = https://github.com/Marxa-Digital/mx-mail
 	branch = develop
+[submodule "projects/marxa/forms"]
+	path = projects/marxa/forms
+	url = https://github.com/marxa-digital/mx-forms

@@ -20,7 +20,7 @@ module.exports = {
     link: {
       lib: npsUtils.ifNotWindows( 'npm link dist/marxa/$LIB', 'npm link dist/marxa/%LIB%' ),
       project: npsUtils.ifNotWindows( 'cd "dist/marxa/$LIB" && npm link', 'cd "dist/marxa/%LIB%" && npm link' ),
-      styles: npsUtils.ifNotWindows( 'cpx "projects/marxa/$LIB/src/lib/styles/**/*" "dist/marxa/$LIB/styles"', 'cpx "widgets/marxa/%LIB%/src/lib/styles/**/*" "dist/marxa/%LIB%/styles"' )
+      styles: npsUtils.ifNotWindows( 'cpx "widgets/marxa/$LIB/src/lib/styles/**/*" "dist/marxa/$LIB/styles"', 'cpx "widgets/marxa/%LIB%/src/lib/styles/**/*" "dist/marxa/%LIB%/styles"' )
     },
     publish: {
       default: 'nps lib.build link.project link.lib link.styles lib.publish',

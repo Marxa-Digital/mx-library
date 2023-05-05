@@ -564,6 +564,126 @@
           }
         }
       }
+    },
+    "@marxa/navbar": {
+      "projectType": "library",
+      "root": "widgets/marxa/navbar",
+      "sourceRoot": "widgets/marxa/navbar/src",
+      "prefix": "mx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "widgets/marxa/navbar/tsconfig.lib.json",
+            "project": "widgets/marxa/navbar/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "widgets/marxa/navbar/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "widgets/marxa/navbar/src/test.ts",
+            "tsConfig": "widgets/marxa/navbar/tsconfig.spec.json",
+            "karmaConfig": "widgets/marxa/navbar/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "widgets/marxa/navbar/tsconfig.lib.json",
+              "widgets/marxa/navbar/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@marxa/search": {
+      "projectType": "library",
+      "root": "widgets/marxa/search",
+      "sourceRoot": "widgets/marxa/search/src",
+      "prefix": "mx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "widgets/marxa/search/tsconfig.lib.json",
+            "project": "widgets/marxa/search/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "widgets/marxa/search/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "widgets/marxa/search/src/test.ts",
+            "tsConfig": "widgets/marxa/search/tsconfig.spec.json",
+            "karmaConfig": "widgets/marxa/search/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "widgets/marxa/search/tsconfig.lib.json",
+              "widgets/marxa/search/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@marxa/slider": {
+      "projectType": "library",
+      "root": "widgets/marxa/slider",
+      "sourceRoot": "widgets/marxa/slider/src",
+      "prefix": "mx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "widgets/marxa/slider/tsconfig.lib.json",
+            "project": "widgets/marxa/slider/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "widgets/marxa/slider/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "widgets/marxa/slider/src/test.ts",
+            "tsConfig": "widgets/marxa/slider/tsconfig.spec.json",
+            "karmaConfig": "widgets/marxa/slider/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "widgets/marxa/slider/tsconfig.lib.json",
+              "widgets/marxa/slider/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "marxa-devs",

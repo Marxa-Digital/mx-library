@@ -33,3 +33,15 @@
 [submodule "projects/marxa/forms"]
 	path = projects/marxa/forms
 	url = https://github.com/marxa-digital/mx-forms
+[submodule "widgets/marxa/navbar"]
+	path = widgets/marxa/navbar
+	url = https://github.com/marxa-digital/mx-navbar
+[submodule "widgets/marxa/search"]
+	path = widgets/marxa/search
+	url = https://github.com/marxa-digital/mx-search
+[submodule "widgets/marxa/slider"]
+	path = widgets/marxa/slider
+	url = https://github.com/marxa-digital/mx-slider
+[submodule "widgets/marxa/social-share"]
+	path = widgets/marxa/social-share
+	url = https://github.com/marxa-digital/mx-social-share

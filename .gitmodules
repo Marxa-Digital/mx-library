@@ -45,3 +45,6 @@
 [submodule "widgets/marxa/social-share"]
 	path = widgets/marxa/social-share
 	url = https://github.com/marxa-digital/mx-social-share
+[submodule "projects/marxa/notifications"]
+	path = projects/marxa/notifications
+	url = https://github.com/marxa-digital/mx-notifications.git
